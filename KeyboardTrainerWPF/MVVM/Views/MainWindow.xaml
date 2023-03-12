@@ -8,8 +8,13 @@
     xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     Width="1280"
     Height="720"
+    MinWidth="1280"
+    MinHeight="720"
     AllowsTransparency="True"
     Background="Transparent"
+    MouseDown="Window_MouseDown"
+    PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
+    ResizeMode="CanResizeWithGrip"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -18,14 +23,14 @@
         <viewModel:MainViewModel />
     </Window.DataContext>
 
-    <Border Background="#272537" CornerRadius="15">
+    <Border Background="#1B262C" CornerRadius="15">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.55*" />
                 <ColumnDefinition Width="7*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75" />
+                <RowDefinition Height="60" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -35,15 +40,25 @@
                 Margin="10,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
+                FontFamily="/Fonts/Ubuntu/#Ubuntu"
                 FontSize="26"
+                FontWeight="Bold"
                 Foreground="White"
                 Text="Keyboard Trainer" />
+
+            <Button
+                x:Name="ButtonClose"
+                Grid.Row="0"
+                Grid.Column="1"
+                Click="ButtonClose_Click"
+                Style="{StaticResource ExitApp}" />
 
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <RadioButton
                     Command="{Binding HomeViewCommand}"
                     Content="Home"
                     Foreground="White"
+                    IsChecked="True"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
@@ -68,7 +83,7 @@
             <ContentControl
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="10"
+                Margin="0,0,10,10"
                 Content="{Binding CurrentView}" />
 
         </Grid>

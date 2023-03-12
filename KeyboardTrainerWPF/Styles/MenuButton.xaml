@@ -12,9 +12,11 @@
                             VerticalAlignment="Stretch"
                             Background="{TemplateBinding Background}">
                             <TextBlock
-                                Height="75"
-                                Margin="10,0,0,0"
+                                Height="50"
+                                Margin="10,12,0,0"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
+                                FontFamily="/Fonts/Ubuntu/#Ubuntu"
                                 FontSize="28"
                                 Text="{TemplateBinding Property=Content}" />
                         </Grid>
@@ -28,7 +30,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#22202f" />
+                <Setter Property="Background" Value="#0F4C75" />
             </Trigger>
         </Style.Triggers>
     </Style>
