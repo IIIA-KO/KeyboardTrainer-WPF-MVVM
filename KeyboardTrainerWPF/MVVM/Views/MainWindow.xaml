@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:KeyboardTrainerWPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     Width="1280"
     Height="720"
     AllowsTransparency="True"
@@ -14,15 +14,63 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Grid>
-        <Border Background="#212529" CornerRadius="15" />
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
 
+    <Border Background="#272537" CornerRadius="15">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="7*" />
             </Grid.ColumnDefinitions>
-        </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="26"
+                Foreground="White"
+                Text="Keyboard Trainer" />
+
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <RadioButton
+                    Command="{Binding HomeViewCommand}"
+                    Content="Home"
+                    Foreground="White"
+                    Style="{StaticResource MenuButtonStyle}" />
+
+                <RadioButton
+                    Command="{Binding TrainViewCommand}"
+                    Content="Train"
+                    Foreground="White"
+                    Style="{StaticResource MenuButtonStyle}" />
+
+                <RadioButton
+                    Command="{Binding RecordsTableViewCommand}"
+                    Content="Records Table"
+                    Foreground="White"
+                    Style="{StaticResource MenuButtonStyle}" />
+
+                <RadioButton
+                    Command="{Binding SettingsViewCommand}"
+                    Content="Settings"
+                    Foreground="White"
+                    Style="{StaticResource MenuButtonStyle}" />
+            </StackPanel>
+
+            <ContentControl
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10"
+                Content="{Binding CurrentView}" />
+
+        </Grid>
+    </Border>
 </Window>

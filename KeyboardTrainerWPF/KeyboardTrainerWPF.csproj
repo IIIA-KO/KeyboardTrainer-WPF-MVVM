@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="MVVM\Models\" />
     <Folder Include="Images\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
 
 </Project>
