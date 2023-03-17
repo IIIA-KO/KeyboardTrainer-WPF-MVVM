@@ -16,11 +16,35 @@
     <None Remove="Fonts\Ubuntu\Ubuntu-Medium.ttf" />
     <None Remove="Fonts\Ubuntu\Ubuntu-MediumItalic.ttf" />
     <None Remove="Fonts\Ubuntu\Ubuntu-Regular.ttf" />
+    <None Remove="Images\keyboardIcon\keyboard-1.png" />
+    <None Remove="Images\keyboardIcon\keyboard-2.png" />
+    <None Remove="Images\keyboardIcon\keyboard-3.png" />
+    <None Remove="Images\keyboardIcon\keyboard-4.png" />
+    <None Remove="Images\keyboardIcon\keyboard-5.png" />
+    <None Remove="Images\keyboardIcon\keyboard-6.png" />
     <None Remove="Images\shutdown_def.png" />
     <None Remove="Images\shutdown_mo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\keyboardIcon\keyboard-1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\keyboardIcon\keyboard-2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\keyboardIcon\keyboard-3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\keyboardIcon\keyboard-4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\keyboardIcon\keyboard-5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\keyboardIcon\keyboard-6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\shutdown_mo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -45,6 +69,12 @@
     <Resource Include="Fonts\Ubuntu\Ubuntu-Medium.ttf" />
     <Resource Include="Fonts\Ubuntu\Ubuntu-MediumItalic.ttf" />
     <Resource Include="Fonts\Ubuntu\Ubuntu-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\keyboard.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
