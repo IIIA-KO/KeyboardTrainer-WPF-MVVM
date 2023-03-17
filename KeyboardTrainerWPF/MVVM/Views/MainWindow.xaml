@@ -23,7 +23,7 @@
         <viewModel:MainViewModel />
     </Window.DataContext>
 
-    <Border Background="#1B262C" CornerRadius="15">
+    <Border Background="#1B262C" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.55*" />

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
-    internal class MainViewModel : ObservableObject
+    internal class MainViewModel : DependencyObject
     {
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand RecordsTableViewCommand { get; set; }
@@ -20,17 +21,15 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         public TrainViewModel TrainVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
 
-
-        private object _currentView;
         public object CurrentView
         {
-            get { return _currentView; }
-            set
-            {
-                _currentView = value;
-                OnPropertyChanged();
-            }
+            get { return (object)GetValue(CurrentViewProperty); }
+            set { SetValue(CurrentViewProperty, value); }
         }
+        public static readonly DependencyProperty CurrentViewProperty =
+            DependencyProperty.Register("CurrentView", typeof(object), typeof(MainViewModel), new PropertyMetadata(0));
+
+
 
         public MainViewModel()
         {
