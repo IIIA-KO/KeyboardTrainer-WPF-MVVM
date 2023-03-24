@@ -28,6 +28,10 @@
             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
                 <view:Settings />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:RegistrationViewModel}">
+                <view:Registration />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

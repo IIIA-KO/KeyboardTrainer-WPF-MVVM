@@ -26,8 +26,7 @@
     <Border Background="#1B262C" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.55*" />
-                <ColumnDefinition Width="7*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -60,7 +59,7 @@
             <Button
                 x:Name="ButtonClose"
                 Grid.Row="0"
-                Grid.Column="1"
+                Grid.Column="0"
                 Click="ButtonClose_Click"
                 Style="{StaticResource ExitApp}" />
 
@@ -71,6 +70,7 @@
                 HorizontalAlignment="Center"
                 Orientation="Horizontal">
                 <RadioButton
+                    x:Name="HomeRadioButton"
                     Command="{Binding HomeViewCommand}"
                     Content="Home"
                     Foreground="White"
@@ -78,18 +78,21 @@
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
+                    x:Name="TrainingRadioButton"
                     Command="{Binding TrainViewCommand}"
                     Content="Training"
                     Foreground="White"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
+                    x:Name="RecordsTableRadioButton"
                     Command="{Binding RecordsTableViewCommand}"
                     Content="Records Table"
                     Foreground="White"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
+                    x:Name="SettingsRadioButton"
                     Command="{Binding SettingsViewCommand}"
                     Content="Settings"
                     Foreground="White"
@@ -101,7 +104,9 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Margin="10"
-                Content="{Binding CurrentView}" />
+                Content="{Binding CurrentView}"
+                Focusable="True"
+                IsTabStop="True" />
 
         </Grid>
     </Border>
