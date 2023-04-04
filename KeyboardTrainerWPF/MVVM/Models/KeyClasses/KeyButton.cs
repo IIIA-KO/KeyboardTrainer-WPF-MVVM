@@ -14,7 +14,7 @@ using Color = System.Windows.Media.Color;
 
 namespace KeyboardTrainerWPF.MVVM.Models.KeyClasses
 {
-    internal class KeyButton : FrameworkElement
+    public class KeyButton
     {
         #region Public Properties
         public Key KeyValue { get; private set; }

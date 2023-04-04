@@ -1,4 +1,5 @@
 ﻿using KeyboardTrainerWPF.Core;
+using KeyboardTrainerWPF.MVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private PasswordBox? _password;
         #endregion
 
-        #region Public Constructor
+        #region Public Constructors
+        public RegistrationViewModel()
+        {
+            OKCommand = new RelayCommand(Execute_OK, CanExecute_OK);
+            CloseCommand = new RelayCommand(Execute_Close);
+        }
+
         public RegistrationViewModel(TextBox? login, PasswordBox? password, Action<string, string>? action)
         {
             _action = action;

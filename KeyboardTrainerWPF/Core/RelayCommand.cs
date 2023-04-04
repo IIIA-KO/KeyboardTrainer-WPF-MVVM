@@ -9,14 +9,8 @@ namespace KeyboardTrainerWPF.Core
 {
     internal class RelayCommand : ICommand
     {
-        readonly Predicate<object?>? canExecute;
-        readonly Action<object?>? methodExecute;
-
-        public RelayCommand(Action<object?>? methodExecute, Predicate<object?>? canExecute = null)
-        {
-            this.methodExecute = methodExecute;
-            this.canExecute = canExecute;
-        }
+        private Action<object?>? _execute;
+        private Predicate<object?>? _canExecute;
 
         public event EventHandler? CanExecuteChanged
         {
@@ -24,14 +18,14 @@ namespace KeyboardTrainerWPF.Core
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public bool CanExecute(object? parameter)
+        public RelayCommand(Action<object?>? execute, Predicate<object?>? canExecute = null)
         {
-            return canExecute == null || canExecute(parameter);
+            _execute = execute;
+            _canExecute = canExecute;
         }
 
-        public void Execute(object? parameter)
-        {
-            methodExecute?.Invoke(parameter);
-        }
+        public bool CanExecute(object? parameter) => _canExecute == null || _canExecute.Invoke(parameter);
+
+        public void Execute(object? parameter) => _execute?.Invoke(parameter);
     }
 }

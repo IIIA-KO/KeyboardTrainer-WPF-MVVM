@@ -26,7 +26,8 @@
 
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Width" Value="250" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Foreground" Value="White" />
         </Style.Setters>
 
         <Style.Triggers>

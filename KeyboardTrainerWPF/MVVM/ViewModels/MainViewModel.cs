@@ -22,14 +22,26 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         public TrainViewModel TrainVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
 
+
+        public string User
+        {
+            get { return (string)GetValue(UserProperty); }
+            set { SetValue(UserProperty, value); }
+        }
+        public static readonly DependencyProperty UserProperty =
+            DependencyProperty.Register("User", typeof(string), typeof(MainViewModel), new PropertyMetadata(Properties.Settings.Default.UserName));
+
         public object CurrentView
         {
             get { return (object)GetValue(CurrentViewProperty); }
-            set { SetValue(CurrentViewProperty, value); }
+            set 
+            { 
+                SetValue(CurrentViewProperty, value);
+                User = Properties.Settings.Default.UserName; 
+            }
         }
         public static readonly DependencyProperty CurrentViewProperty =
             DependencyProperty.Register("CurrentView", typeof(object), typeof(MainViewModel), new PropertyMetadata(0));
-
 
 
         public MainViewModel()
@@ -40,6 +52,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             SettingsVM = new SettingsViewModel();
 
             CurrentView = HomeVM;
+            User = Properties.Settings.Default.UserName;
 
             HomeViewCommand = new RelayCommand(x =>
             {

@@ -16,12 +16,12 @@ namespace KeyboardTrainerWPF.Core
             Properties.Settings.Default.Save();
         }
 
-        public static void WriteResaults(UserScoreModel player)
+        public static void WriteResaults(UserScoreModel user)
         {
             string path = Directory.GetCurrentDirectory() + "\\Scores.txt";
             if (!File.Exists(path)) 
                 File.Create(path).Close();
-            File.AppendAllText(path, player.ToString());
+            File.AppendAllText(path, user.ToString());
         }
 
         public static void ThrowAnExceptionIfAccountHasNotBeenFound(string? login, string? password)

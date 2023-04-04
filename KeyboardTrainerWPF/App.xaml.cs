@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Globalization;
+using System.Threading;
 using System.Windows;
 
 namespace KeyboardTrainerWPF
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var languageCode = KeyboardTrainerWPF.Properties.Settings.Default.LanguageCode;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(languageCode);
+            base.OnStartup(e);
+        }
     }
 }
