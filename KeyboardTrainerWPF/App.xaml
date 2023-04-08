@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Styles/MenuButton.xaml" />
                 <ResourceDictionary Source="Styles/ExitButton.xaml" />
                 <ResourceDictionary Source="Styles/SettingsButton.xaml" />
+                <ResourceDictionary Source="Styles/SettingsComboBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

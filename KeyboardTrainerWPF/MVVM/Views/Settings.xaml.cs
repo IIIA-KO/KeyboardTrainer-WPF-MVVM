@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using KeyboardTrainerWPF.MVVM.ViewModels;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -23,27 +24,7 @@ namespace KeyboardTrainerWPF.MVVM.Views
         public Settings()
         {
             InitializeComponent();
-            switch(Properties.Settings.Default.LanguageCode)
-            {
-                case "uk-UA":
-                    comboBoxLanguageSelect.SelectedIndex = 1;
-                    break;
-
-                default:
-                    comboBoxLanguageSelect.SelectedIndex = 0;
-                    break;
-            }
-            comboBoxLanguageSelect.SelectionChanged += comboBoxLanguageSelect_SelectionChanged;
-        }
-
-        private void comboBoxLanguageSelect_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            if (sender is ComboBox)
-            {
-                string[] languageCodes = new[] { "en-US", "uk-UA" };
-                Properties.Settings.Default.LanguageCode = languageCodes[comboBoxLanguageSelect.SelectedIndex];
-                Properties.Settings.Default.Save();
-            }
+            DataContext = new SettingsViewModel(comboBoxLanguageSelect);
         }
     }
 }

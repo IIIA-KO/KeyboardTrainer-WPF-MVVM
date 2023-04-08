@@ -19,25 +19,6 @@ namespace KeyboardTrainerWPF.MVVM.Views
             KeyboardButtons = new Dictionary<Key, KeyButton>();
             GenerateKeyboardButtons(KeyboardButtons);
             DataContext = new HomeViewModel(KeyboardButtons, tbTypedText, progressBar);
-            //SetLanguage(Properties.Settings.Default.LanguageCode);
-        }
-
-        public void SetLanguage(string language)
-        {
-            switch (language)
-            {
-                case "uk-UA":
-                    labelSpeed.Content = Properties.Languages.Ukrainian.Speed;
-                    labelcharsMin.Content = Properties.Languages.Ukrainian.chars_min;
-                    labelFails.Content = Properties.Languages.Ukrainian.Fails;
-                    break;
-
-                default:
-                    labelSpeed.Content = Properties.Languages.English.Speed;
-                    labelcharsMin.Content = Properties.Languages.English.chars_min;
-                    labelFails.Content = Properties.Languages.English.Fails;
-                    break;
-            }
         }
 
         private void GenerateKeyboardButtons(Dictionary<Key, KeyButton> keyboard)

@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using KeyboardTrainerWPF.Properties.Languages;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
@@ -38,7 +39,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
         public HomeViewModel(Dictionary<Key, KeyButton> keyboard, TextBox textBox, ProgressBar bar)
         {
-            _keyboardButtons = keyboard; //?? throw new ArgumentNullException(nameof(keyboard));
+            _keyboardButtons = keyboard;
             _textBox = textBox;
             _progressBar = bar;
             _speedTracker.Tick += SpeedTracking;
@@ -59,7 +60,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             set { SetValue(StartOrStopProperty, value); }
         }
         public static readonly DependencyProperty StartOrStopProperty =
-            DependencyProperty.Register("StartOrStop", typeof(string), typeof(HomeViewModel), new PropertyMetadata("Start"));
+            DependencyProperty.Register("StartOrStop", typeof(string), typeof(HomeViewModel), new PropertyMetadata($"{Resources.Start}"));
 
         public bool IsStarted
         {
@@ -109,7 +110,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 _textBox.Focus();
                 _progressBar.Maximum = _textBox.Text.Length;
                 _progressBar.Value = 0;
-                StartOrStop = "Stop";
+                StartOrStop = $"{Resources.Stop}";
                 _startTime = DateTime.Now;
                 _speedTracker.Start();
             }
@@ -121,7 +122,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             if (obj is KeyEventArgs e && _keyboardButtons.ContainsKey(e.Key))
             {
-                //Key key = (e.Key == Key.System) ? e.SystemKey : e.Key;
                 Key key = e.Key;
                 _keyboardButtons[key].KeyGrid.Background = new SolidColorBrush(Color.FromRgb(15, 76, 117));
 
@@ -221,8 +221,10 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private void Stop()
         {
             _speedTracker.Stop();
+            _textBox.Text = string.Empty;
+            _progressBar.Value = 0;
             IsStarted = false;
-            StartOrStop = "Start";
+            StartOrStop = $"{Resources.Start}";
         }
         private void SpeedTracking(object? sender, EventArgs e) =>
             Speed = 60 * Math.Round(_text.Length / (DateTime.Now - _startTime).TotalSeconds);

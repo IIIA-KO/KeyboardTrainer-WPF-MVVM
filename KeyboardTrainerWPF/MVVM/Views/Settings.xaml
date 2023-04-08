@@ -13,10 +13,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <UserControl.DataContext>
-        <viewModel:SettingsViewModel />
-    </UserControl.DataContext>
-
     <Grid Background="#1B262C">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -62,14 +58,7 @@
                     IsSnapToTickEnabled="True"
                     Maximum="3"
                     Minimum="1"
-                    Value="{Binding Complexity, Mode=TwoWay}">
-                    <Slider.ToolTip>
-                        <TextBlock
-                            Width="100"
-                            Text=" The number of characters that are used to generate a string. If there are more than 25 of them, digits will be used. If there are more than 35 of them, special characters will be used also the string length will increase"
-                            TextWrapping="Wrap" />
-                    </Slider.ToolTip>
-                </Slider>
+                    Value="{Binding Complexity, Mode=TwoWay}" />
 
                 <Label
                     x:Name="labelTextLanguage"
@@ -216,9 +205,16 @@
                     Margin="25,0,50,0"
                     HorizontalAlignment="Left"
                     FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
-                    FontSize="18">
-                    <ComboBoxItem Content="English" />
-                    <ComboBoxItem Content="Українська" />
+                    FontSize="18"
+                    ItemsSource="{Binding Languages}"
+                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    Style="{DynamicResource ComboBoxStyle}">
+
+                    <behavior:Interaction.Triggers>
+                        <behavior:EventTrigger EventName="SelectionChanged">
+                            <behavior:InvokeCommandAction Command="{Binding LanguageComboBoxSelectionChanged}" />
+                        </behavior:EventTrigger>
+                    </behavior:Interaction.Triggers>
                 </ComboBox>
             </Grid>
         </GroupBox>
