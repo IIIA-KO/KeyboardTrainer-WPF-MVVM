@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:KeyboardTrainerWPF.Properties.Languages"
     xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     Title="KeyboardTrainer"
     Width="1280"
@@ -63,7 +64,7 @@
                 VerticalAlignment="Center"
                 FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                 FontSize="24"
-                Foreground="LightGray"
+                Foreground="#BBE1FA"
                 Text="{Binding User}" />
 
             <Button
@@ -82,22 +83,26 @@
                 <RadioButton
                     x:Name="HomeRadioButton"
                     Command="{Binding HomeViewCommand}"
+                    Content="{x:Static p:Resources.Home}"
                     IsChecked="True"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
                     x:Name="TrainingRadioButton"
                     Command="{Binding TrainViewCommand}"
+                    Content="{x:Static p:Resources.Training}"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
                     x:Name="RecordsTableRadioButton"
                     Command="{Binding RecordsTableViewCommand}"
+                    Content="{x:Static p:Resources.RecorsTable}"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
                     x:Name="SettingsRadioButton"
                     Command="{Binding SettingsViewCommand}"
+                    Content="{x:Static p:Resources.Settings}"
                     Style="{StaticResource MenuButtonStyle}" />
             </StackPanel>
 

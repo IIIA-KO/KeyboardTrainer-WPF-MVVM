@@ -3,18 +3,13 @@ using KeyboardTrainerWPF.MVVM.Models.KeyClasses;
 using KeyboardTrainerWPF.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Effects;
-using Color = System.Windows.Media.Color;
-
 
 namespace KeyboardTrainerWPF.MVVM.Views
 {
-    public partial class Home : UserControl, ISetLanguage
+    public partial class Home : UserControl
     {
         Dictionary<Key, KeyButton> KeyboardButtons;
 
@@ -24,7 +19,7 @@ namespace KeyboardTrainerWPF.MVVM.Views
             KeyboardButtons = new Dictionary<Key, KeyButton>();
             GenerateKeyboardButtons(KeyboardButtons);
             DataContext = new HomeViewModel(KeyboardButtons, tbTypedText, progressBar);
-            SetLanguage(Properties.Settings.Default.LanguageCode);
+            //SetLanguage(Properties.Settings.Default.LanguageCode);
         }
 
         public void SetLanguage(string language)

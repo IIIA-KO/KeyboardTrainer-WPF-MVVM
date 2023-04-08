@@ -60,6 +60,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>English.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Languages\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Languages\Ukrainian.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -76,6 +81,13 @@
     <EmbeddedResource Update="Properties\Languages\English.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>English.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Languages\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Languages\Resources.uk-UA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Languages\Ukrainian.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

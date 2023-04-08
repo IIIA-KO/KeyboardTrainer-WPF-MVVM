@@ -2,6 +2,7 @@
 using KeyboardTrainerWPF.MVVM.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -85,7 +86,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             {
                 Properties.Settings.Default.Complexity = Complexity;
                 Properties.Settings.Default.Save();
-                MessageBox.Show("Settings were saved", "Saved!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                if(MessageBox.Show("Settings were saved", "Saved!", MessageBoxButton.OK, MessageBoxImage.Exclamation) == MessageBoxResult.OK)
+                {
+                    var currentExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
+                    Process.Start(currentExecutablePath);
+                    Application.Current.Shutdown();
+                }
+
             }
         }
 

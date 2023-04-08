@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:KeyboardTrainerWPF.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:p="clr-namespace:KeyboardTrainerWPF.Properties.Languages"
     xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     x:Name="window"
     d:DesignHeight="450"
@@ -28,7 +29,8 @@
             x:Name="gbGeneral"
             Grid.Row="0"
             FontSize="18"
-            Foreground="White">
+            Foreground="White"
+            Header="{x:Static p:Resources.General}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -46,8 +48,9 @@
                     Margin="20,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Content="{x:Static p:Resources.Complexity}"
                     FontSize="24"
-                    Foreground="#BBE1FA" />
+                    Foreground="White" />
                 <Slider
                     Grid.Row="1"
                     Grid.Column="0"
@@ -75,8 +78,9 @@
                     Margin="20,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Content="{x:Static p:Resources.TextLanguage}"
                     FontSize="24"
-                    Foreground="#BBE1FA" />
+                    Foreground="White" />
 
                 <StackPanel
                     Grid.Row="1"
@@ -88,9 +92,10 @@
                         Margin="20,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        Content="{x:Static p:Resources.EnglishLang}"
                         FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                         FontSize="20"
-                        Foreground="#BBE1FA"
+                        Foreground="White"
                         IsChecked="True" />
 
                     <RadioButton
@@ -99,12 +104,11 @@
                         Margin="20,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        Content="{x:Static p:Resources.UkrainianLang}"
                         FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                         FontSize="20"
-                        Foreground="#BBE1FA" />
+                        Foreground="White" />
                 </StackPanel>
-
-
             </Grid>
         </GroupBox>
 
@@ -112,22 +116,26 @@
             x:Name="gbAccount"
             Grid.Row="1"
             FontSize="18"
-            Foreground="White">
+            Foreground="White"
+            Header="{x:Static p:Resources.Account}">
             <StackPanel Orientation="Horizontal">
                 <Button
                     x:Name="btnLogIn"
                     Margin="20,0,0,0"
                     Command="{Binding LoginCommand}"
+                    Content="{x:Static p:Resources.LoginIn}"
                     Style="{StaticResource SettingsButtonStyle}" />
                 <Button
                     x:Name="btnSignUp"
                     Margin="20,0,0,0"
                     Command="{Binding SignUpCommand}"
+                    Content="{x:Static p:Resources.SignUp}"
                     Style="{StaticResource SettingsButtonStyle}" />
                 <Button
                     x:Name="btnLogOut"
                     Margin="20,0,0,0"
                     Command="{Binding LogOutCommand}"
+                    Content="{x:Static p:Resources.LogOut}"
                     Style="{StaticResource SettingsButtonStyle}" />
             </StackPanel>
         </GroupBox>
@@ -136,7 +144,8 @@
             x:Name="gbAppereance"
             Grid.Row="2"
             FontSize="18"
-            Foreground="White">
+            Foreground="White"
+            Header="{x:Static p:Resources.Appereance}">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -155,8 +164,9 @@
                     Margin="20,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Content="{x:Static p:Resources.Theme}"
                     FontSize="24"
-                    Foreground="#BBE1FA" />
+                    Foreground="White" />
 
                 <StackPanel
                     Grid.Row="1"
@@ -168,9 +178,10 @@
                         Margin="20,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        Content="{x:Static p:Resources.Dark}"
                         FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                         FontSize="20"
-                        Foreground="#BBE1FA"
+                        Foreground="White"
                         IsChecked="True" />
 
                     <RadioButton
@@ -179,9 +190,10 @@
                         Margin="20,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        Content="{x:Static p:Resources.Light}"
                         FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                         FontSize="20"
-                        Foreground="#BBE1FA" />
+                        Foreground="White" />
                 </StackPanel>
 
                 <Label
@@ -191,9 +203,9 @@
                     Margin="20,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
+                    Content="{x:Static p:Resources.AppLanguage}"
                     FontSize="24"
-                    Foreground="#BBE1FA" />
-
+                    Foreground="White" />
 
                 <ComboBox
                     x:Name="comboBoxLanguageSelect"
@@ -208,10 +220,7 @@
                     <ComboBoxItem Content="English" />
                     <ComboBoxItem Content="Українська" />
                 </ComboBox>
-
-
             </Grid>
-
         </GroupBox>
 
         <Grid Grid.Row="3">
@@ -228,7 +237,15 @@
                     HorizontalAlignment="Right"
                     Command="{Binding SaveCommand}"
                     CommandParameter="{Binding ElementName=window}"
-                    Style="{StaticResource SettingsButtonStyle}" />
+                    Content="{x:Static p:Resources.SaveSettings}"
+                    Style="{StaticResource SettingsButtonStyle}">
+                    <Button.ToolTip>
+                        <TextBlock
+                            Width="10"
+                            Text="{x:Static p:Resources.SavingMessage}"
+                            TextWrapping="Wrap" />
+                    </Button.ToolTip>
+                </Button>
             </Grid>
         </Grid>
     </Grid>

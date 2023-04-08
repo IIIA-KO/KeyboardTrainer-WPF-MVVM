@@ -4,33 +4,13 @@ using System.Windows.Input;
 
 namespace KeyboardTrainerWPF
 {
-    public partial class MainWindow : Window, ISetLanguage
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            SetLanguage(Properties.Settings.Default.LanguageCode);
         }
-        public void SetLanguage(string language)
-        {
-            switch (language)
-            {
-                case "uk-UA":
-                    HomeRadioButton.Content = Properties.Languages.Ukrainian.Home;
-                    TrainingRadioButton.Content = Properties.Languages.Ukrainian.Training;
-                    RecordsTableRadioButton.Content = Properties.Languages.Ukrainian.RecorsTable;
-                    SettingsRadioButton.Content = Properties.Languages.Ukrainian.RecorsTable;
-                    break;
-
-                default:
-                    HomeRadioButton.Content = Properties.Languages.English.Home;
-                    TrainingRadioButton.Content = Properties.Languages.English.Training;
-                    RecordsTableRadioButton.Content = Properties.Languages.English.RecorsTable;
-                    SettingsRadioButton.Content = Properties.Languages.English.RecorsTable;
-                    break;
-            }
-        }
-
+        
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

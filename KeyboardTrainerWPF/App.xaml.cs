@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Threading;
 using System.Windows;
 
@@ -8,8 +9,7 @@ namespace KeyboardTrainerWPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var languageCode = KeyboardTrainerWPF.Properties.Settings.Default.LanguageCode;
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(languageCode);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(KeyboardTrainerWPF.Properties.Settings.Default.LanguageCode);
             base.OnStartup(e);
         }
     }
