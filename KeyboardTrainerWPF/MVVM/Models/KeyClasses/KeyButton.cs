@@ -35,9 +35,9 @@ namespace KeyboardTrainerWPF.MVVM.Models.KeyClasses
             var border = new Border
             {
                 Margin = new Thickness(2.0),
-                BorderBrush = new SolidColorBrush(Colors.White),
+                BorderBrush = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(236, 239, 241)) : new SolidColorBrush(Color.FromRgb(33, 33, 33)),
                 BorderThickness = new Thickness(1.5),
-                Background = new SolidColorBrush(Color.FromArgb(1, 27, 38, 44)),
+                Background = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(38, 50, 56)) : new SolidColorBrush(Color.FromRgb(220, 221, 225)),
                 CornerRadius = new CornerRadius(15)
             };
 
@@ -48,10 +48,9 @@ namespace KeyboardTrainerWPF.MVVM.Models.KeyClasses
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontFamily = new System.Windows.Media.FontFamily("/Fonts/Nunito_Sans/#NunitoSans"),
+                Foreground = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(236, 239, 241)) : new SolidColorBrush(Color.FromRgb(33, 33, 33)),
                 FontWeight = FontWeights.Bold
             };
-
-            text.Foreground = Brushes.White;
 
             border.Child = text;
             Grid.SetRow(border, row);

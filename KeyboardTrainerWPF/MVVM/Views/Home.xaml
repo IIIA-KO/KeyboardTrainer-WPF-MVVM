@@ -7,9 +7,11 @@
     xmlns:local="clr-namespace:KeyboardTrainerWPF.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:KeyboardTrainerWPF.Properties.Languages"
+    xmlns:theme="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     d:DesignHeight="550"
     d:DesignWidth="900"
+    FontWeight="Bold"
     mc:Ignorable="d">
 
     <behavior:Interaction.Triggers>
@@ -22,7 +24,7 @@
         </behavior:EventTrigger>
     </behavior:Interaction.Triggers>
 
-    <Grid Background="#1B262C">
+    <Grid Background="{Binding BackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
@@ -54,20 +56,20 @@
                     VerticalContentAlignment="Center"
                     Content="{x:Static p:Resources.Speed}"
                     FontSize="22"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
                 <Label
                     x:Name="labelSpeedValue"
                     VerticalAlignment="Center"
                     Content="{Binding Speed, StringFormat=N2}"
                     FontSize="22"
                     FontWeight="Bold"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
                 <Label
                     x:Name="labelcharsMin"
                     VerticalContentAlignment="Center"
                     Content="{x:Static p:Resources.chars_min}"
                     FontSize="22"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
             </StackPanel>
 
             <StackPanel
@@ -81,14 +83,14 @@
                     VerticalContentAlignment="Center"
                     Content="{x:Static p:Resources.Fails}"
                     FontSize="22"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
                 <Label
                     x:Name="labelFailsValue"
                     VerticalAlignment="Center"
                     Content="{Binding Fails}"
                     FontSize="22"
                     FontWeight="Bold"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
             </StackPanel>
             <Button
                 x:Name="btnStartOrStop"
@@ -100,7 +102,7 @@
                 Margin="50,0,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Background="#0F4C75"
+                Background="{Binding SecondColor}"
                 Command="{Binding StartCommand}"
                 Content="{Binding StartOrStop}"
                 Focusable="False"
@@ -132,7 +134,7 @@
                 x:Name="tbTypedText"
                 Grid.Row="1"
                 AllowDrop="False"
-                Background="#BBE1FA"
+                Background="#B0BEC5"
                 BorderThickness="1"
                 FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                 FontSize="28"

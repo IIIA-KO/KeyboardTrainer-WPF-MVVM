@@ -13,6 +13,7 @@
     MinHeight="720"
     AllowsTransparency="True"
     Background="Transparent"
+    FontWeight="Bold"
     MouseDown="Window_MouseDown"
     PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
     ResizeMode="CanResizeWithGrip"
@@ -24,7 +25,7 @@
         <viewModel:MainViewModel />
     </Window.DataContext>
 
-    <Border Background="#1B262C" CornerRadius="20">
+    <Border Background="{Binding BackgroundColor}" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -53,8 +54,8 @@
                 VerticalAlignment="Center"
                 FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                 FontSize="26"
-                FontWeight="Regular"
-                Foreground="White"
+                FontWeight="Bold"
+                Foreground="{Binding TextColor}"
                 Text="Keyboard Trainer" />
 
             <TextBlock
@@ -64,7 +65,7 @@
                 VerticalAlignment="Center"
                 FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                 FontSize="24"
-                Foreground="#BBE1FA"
+                Foreground="{Binding TextColor}"
                 Text="{Binding User}" />
 
             <Button
@@ -84,6 +85,7 @@
                     x:Name="HomeRadioButton"
                     Command="{Binding HomeViewCommand}"
                     Content="{x:Static p:Resources.Home}"
+                    Foreground="{Binding TextColor}"
                     IsChecked="True"
                     Style="{StaticResource MenuButtonStyle}" />
 
@@ -91,18 +93,21 @@
                     x:Name="TrainingRadioButton"
                     Command="{Binding TrainViewCommand}"
                     Content="{x:Static p:Resources.Training}"
+                    Foreground="{Binding TextColor}"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
                     x:Name="RecordsTableRadioButton"
                     Command="{Binding RecordsTableViewCommand}"
                     Content="{x:Static p:Resources.RecorsTable}"
+                    Foreground="{Binding TextColor}"
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
                     x:Name="SettingsRadioButton"
                     Command="{Binding SettingsViewCommand}"
                     Content="{x:Static p:Resources.Settings}"
+                    Foreground="{Binding TextColor}"
                     Style="{StaticResource MenuButtonStyle}" />
             </StackPanel>
 

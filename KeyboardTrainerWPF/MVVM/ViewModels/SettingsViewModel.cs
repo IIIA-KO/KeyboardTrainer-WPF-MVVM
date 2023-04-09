@@ -11,13 +11,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
-    public class SettingsViewModel : DependencyObject
+    public class SettingsViewModel : DependencyObject, ISetAppereance
     {
         #region Private Fields
         private ComboBox _comboBox;
+        private CheckBox _checkBox;
         #endregion
 
         #region Public Constuctors
@@ -30,6 +32,10 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             Languages = new ObservableCollection<string>() { "English", "Українська" };
 
+
+            _comboBox = new ComboBox();
+            _checkBox = new CheckBox();
+
             switch (Properties.Settings.Default.LanguageCode)
             {
                 case "uk-UA":
@@ -40,18 +46,28 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     SelectedIndex = 0;
                     break;
             }
+            switch (Properties.Settings.Default.DarkTheme)
+            {
+                case true:
+                    _checkBox.IsChecked = true;
+                    break;
+
+                default:
+                    _checkBox.IsChecked = false;
+                    break;
+            }
 
             LoginCommand = new RelayCommand(Execute_LogIn);
             SignUpCommand = new RelayCommand(Execute_SignUp);
             LogOutCommand = new RelayCommand(Execute_LogOut);
             SaveCommand = new RelayCommand(Execute_Save);
             LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
+            ThemeChanged = new RelayCommand(ExecuteThemeChanged);
+            SetAppereance(Properties.Settings.Default.DarkTheme);
         }
 
-        public SettingsViewModel(ComboBox comboBox)
+        public SettingsViewModel(ComboBox comboBox, CheckBox checkBox)
         {
-            _comboBox = comboBox;
-
             UserName = Properties.Settings.Default.UserName;
             Complexity = Properties.Settings.Default.Complexity;
             LanguageCode = Properties.Settings.Default.LanguageCode;
@@ -59,6 +75,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             Languages = new ObservableCollection<string>() { "English", "Українська" };
 
+            _comboBox = comboBox;
+            _checkBox = checkBox;
+
             switch (Properties.Settings.Default.LanguageCode)
             {
                 case "uk-UA":
@@ -69,14 +88,31 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     SelectedIndex = 0;
                     break;
             }
+            switch (Properties.Settings.Default.DarkTheme)
+            {
+                case true:
+                    _checkBox.IsChecked = true;
+                    break;
+
+                default:
+                    _checkBox.IsChecked = false;
+                    break;
+            }
 
             LoginCommand = new RelayCommand(Execute_LogIn);
             SignUpCommand = new RelayCommand(Execute_SignUp);
             LogOutCommand = new RelayCommand(Execute_LogOut);
             SaveCommand = new RelayCommand(Execute_Save);
             LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
+            ThemeChanged = new RelayCommand(ExecuteThemeChanged);
+            SetAppereance(Properties.Settings.Default.DarkTheme);
         }
         #endregion
+
+        #region Public Properties
+        public ObservableCollection<string> Languages { get; set; }
+        #endregion
+
 
         #region Dependency Properties
         public string UserName
@@ -85,7 +121,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             set { SetValue(UserNameProperty, value); }
         }
         public static readonly DependencyProperty UserNameProperty =
-            DependencyProperty.Register("UserName", typeof(string), typeof(SettingsViewModel), 
+            DependencyProperty.Register("UserName", typeof(string), typeof(SettingsViewModel),
                 new PropertyMetadata(Properties.Settings.Default.UserName));
 
         public double Complexity
@@ -94,7 +130,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             set { SetValue(ComplexityProperty, value); }
         }
         public static readonly DependencyProperty ComplexityProperty =
-            DependencyProperty.Register("Complexity", typeof(double), typeof(SettingsViewModel), 
+            DependencyProperty.Register("Complexity", typeof(double), typeof(SettingsViewModel),
                 new PropertyMetadata(Properties.Settings.Default.Complexity));
 
         public bool IsDarkTheme
@@ -103,7 +139,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             set { SetValue(IsDarkThemeProperty, value); }
         }
         public static readonly DependencyProperty IsDarkThemeProperty =
-            DependencyProperty.Register("IsDarkTheme", typeof(bool), typeof(SettingsViewModel), 
+            DependencyProperty.Register("IsDarkTheme", typeof(bool), typeof(SettingsViewModel),
                 new PropertyMetadata(Properties.Settings.Default.DarkTheme));
 
         public string LanguageCode
@@ -112,7 +148,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             set { SetValue(LanguageCodeProperty, value); }
         }
         public static readonly DependencyProperty LanguageCodeProperty =
-            DependencyProperty.Register("LanguageCode", typeof(string), typeof(SettingsViewModel), 
+            DependencyProperty.Register("LanguageCode", typeof(string), typeof(SettingsViewModel),
                 new PropertyMetadata(Properties.Settings.Default.LanguageCode));
 
         public int SelectedIndex
@@ -122,10 +158,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         }
         public static readonly DependencyProperty SelectedIndexProperty =
             DependencyProperty.Register("SelectedIndex", typeof(int), typeof(SettingsViewModel), new PropertyMetadata(0));
-
-        public ObservableCollection<string> Languages { get; set; }
-
-
         #endregion
 
 
@@ -152,10 +184,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             if (obj is UserControl window)
             {
-                Properties.Settings.Default.UserName = UserName;
                 Properties.Settings.Default.Complexity = Complexity;
                 Properties.Settings.Default.Save();
-                if(MessageBox.Show("Settings were saved", "Saved!", MessageBoxButton.OK, MessageBoxImage.Exclamation) == MessageBoxResult.OK)
+                if (MessageBox.Show("Settings were saved", "Saved!", MessageBoxButton.OK, MessageBoxImage.Exclamation) == MessageBoxResult.OK)
                 {
                     var currentExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
                     Process.Start(currentExecutablePath);
@@ -174,6 +205,39 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 Properties.Settings.Default.LanguageCode = languageCodes[_comboBox.SelectedIndex];
                 Properties.Settings.Default.Save();
             }
+        }
+
+        public ICommand ThemeChanged { get; }
+        
+        private void ExecuteThemeChanged(object? obj)
+        {
+            if (_checkBox != null)
+            {
+                Properties.Settings.Default.DarkTheme = (bool)_checkBox.IsChecked;
+                Properties.Settings.Default.Save();
+            }
+        }
+        #endregion
+
+
+        #region InterfaceImplementation
+        public Brush TextColor { get; set; }
+        public Brush SecondColor { get; set; }
+        public Brush BackgroundColor { get; set; }
+        public void SetAppereance(bool isDarkTheme)
+        {
+            if (isDarkTheme)
+            {
+                BackgroundColor = new SolidColorBrush(Color.FromRgb(38, 50, 56));
+                TextColor = new SolidColorBrush(Color.FromRgb(236, 239, 241));
+            }
+            else
+            {
+                BackgroundColor = new SolidColorBrush(Color.FromRgb(207, 216, 220));
+                TextColor = new SolidColorBrush(Color.FromRgb(33, 33, 33));
+            }
+            SecondColor = new SolidColorBrush(Color.FromRgb(96, 125, 139));
+            return;
         }
         #endregion
     }

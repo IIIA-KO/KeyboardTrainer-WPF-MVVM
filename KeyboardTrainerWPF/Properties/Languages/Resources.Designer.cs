@@ -259,11 +259,11 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Theme.
+        ///   Looks up a localized string similar to Dark Theme.
         /// </summary>
-        public static string Theme {
+        public static string ThemeDark {
             get {
-                return ResourceManager.GetString("Theme", resourceCulture);
+                return ResourceManager.GetString("ThemeDark", resourceCulture);
             }
         }
         

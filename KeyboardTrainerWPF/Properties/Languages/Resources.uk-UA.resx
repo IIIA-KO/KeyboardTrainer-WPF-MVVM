@@ -183,8 +183,8 @@
   <data name="TextLanguage" xml:space="preserve">
     <value>Мова тексту</value>
   </data>
-  <data name="Theme" xml:space="preserve">
-    <value>Тема</value>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Темна тема</value>
   </data>
   <data name="Training" xml:space="preserve">
     <value>Тренування</value>

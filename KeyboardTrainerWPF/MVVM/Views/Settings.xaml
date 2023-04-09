@@ -13,7 +13,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid Background="#1B262C">
+    <Grid Background="{Binding BackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -24,9 +24,13 @@
         <GroupBox
             x:Name="gbGeneral"
             Grid.Row="0"
+            BorderBrush="{Binding TextColor}"
+            BorderThickness="3"
             FontSize="18"
-            Foreground="White"
-            Header="{x:Static p:Resources.General}">
+            FontWeight="Bold"
+            Foreground="{Binding TextColor}"
+            Header="{x:Static p:Resources.General}"
+            Style="{StaticResource GroupBoxStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -46,7 +50,7 @@
                     VerticalAlignment="Bottom"
                     Content="{x:Static p:Resources.Complexity}"
                     FontSize="24"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
                 <Slider
                     Grid.Row="1"
                     Grid.Column="0"
@@ -69,7 +73,7 @@
                     VerticalAlignment="Bottom"
                     Content="{x:Static p:Resources.TextLanguage}"
                     FontSize="24"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
 
                 <StackPanel
                     Grid.Row="1"
@@ -84,7 +88,7 @@
                         Content="{x:Static p:Resources.EnglishLang}"
                         FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                         FontSize="20"
-                        Foreground="White"
+                        Foreground="{Binding TextColor}"
                         IsChecked="True" />
 
                     <RadioButton
@@ -96,7 +100,7 @@
                         Content="{x:Static p:Resources.UkrainianLang}"
                         FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                         FontSize="20"
-                        Foreground="White" />
+                        Foreground="{Binding TextColor}" />
                 </StackPanel>
             </Grid>
         </GroupBox>
@@ -104,27 +108,37 @@
         <GroupBox
             x:Name="gbAccount"
             Grid.Row="1"
+            BorderBrush="{Binding TextColor}"
+            BorderThickness="3"
             FontSize="18"
-            Foreground="White"
-            Header="{x:Static p:Resources.Account}">
+            FontWeight="Bold"
+            Foreground="{Binding TextColor}"
+            Header="{x:Static p:Resources.Account}"
+            Style="{StaticResource GroupBoxStyle}">
             <StackPanel Orientation="Horizontal">
                 <Button
                     x:Name="btnLogIn"
                     Margin="20,0,0,0"
+                    Background="{Binding SecondColor}"
                     Command="{Binding LoginCommand}"
                     Content="{x:Static p:Resources.LoginIn}"
+                    Foreground="{Binding TextColor}"
                     Style="{StaticResource SettingsButtonStyle}" />
                 <Button
                     x:Name="btnSignUp"
                     Margin="20,0,0,0"
+                    Background="{Binding SecondColor}"
                     Command="{Binding SignUpCommand}"
                     Content="{x:Static p:Resources.SignUp}"
+                    Foreground="{Binding TextColor}"
                     Style="{StaticResource SettingsButtonStyle}" />
                 <Button
                     x:Name="btnLogOut"
                     Margin="20,0,0,0"
+                    Background="{Binding SecondColor}"
                     Command="{Binding LogOutCommand}"
                     Content="{x:Static p:Resources.LogOut}"
+                    Foreground="{Binding TextColor}"
                     Style="{StaticResource SettingsButtonStyle}" />
             </StackPanel>
         </GroupBox>
@@ -132,9 +146,13 @@
         <GroupBox
             x:Name="gbAppereance"
             Grid.Row="2"
+            BorderBrush="{Binding TextColor}"
+            BorderThickness="3"
             FontSize="18"
-            Foreground="White"
-            Header="{x:Static p:Resources.Appereance}">
+            FontWeight="Bold"
+            Foreground="{Binding TextColor}"
+            Header="{x:Static p:Resources.Appereance}"
+            Style="{StaticResource GroupBoxStyle}">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -153,37 +171,28 @@
                     Margin="20,0,0,10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
-                    Content="{x:Static p:Resources.Theme}"
+                    Content="{x:Static p:Resources.ThemeDark}"
                     FontSize="24"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
 
-                <StackPanel
+                <CheckBox
+                    Name="darkThemeCheckBox"
                     Grid.Row="1"
                     Grid.Column="0"
-                    Orientation="Horizontal">
-                    <RadioButton
-                        x:Name="rbDark"
-                        Height="24"
-                        Margin="20,0,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Content="{x:Static p:Resources.Dark}"
-                        FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
-                        FontSize="20"
-                        Foreground="White"
-                        IsChecked="True" />
-
-                    <RadioButton
-                        x:Name="rbLight"
-                        Height="24"
-                        Margin="20,0,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Content="{x:Static p:Resources.Light}"
-                        FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
-                        FontSize="20"
-                        Foreground="White" />
-                </StackPanel>
+                    Width="20"
+                    Height="20"
+                    Margin="20,0"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource CheckBoxTheme}">
+                    <behavior:Interaction.Triggers>
+                        <behavior:EventTrigger EventName="Checked">
+                            <behavior:InvokeCommandAction Command="{Binding ThemeChanged}" />
+                        </behavior:EventTrigger>
+                        <behavior:EventTrigger EventName="Unchecked">
+                            <behavior:InvokeCommandAction Command="{Binding ThemeChanged}" />
+                        </behavior:EventTrigger>
+                    </behavior:Interaction.Triggers>
+                </CheckBox>
 
                 <Label
                     x:Name="labelAppLanguage"
@@ -194,7 +203,7 @@
                     VerticalAlignment="Bottom"
                     Content="{x:Static p:Resources.AppLanguage}"
                     FontSize="24"
-                    Foreground="White" />
+                    Foreground="{Binding TextColor}" />
 
                 <ComboBox
                     x:Name="comboBoxLanguageSelect"
@@ -231,9 +240,12 @@
                     Height="50"
                     Margin="0,10,20,0"
                     HorizontalAlignment="Right"
+                    Background="{Binding SecondColor}"
                     Command="{Binding SaveCommand}"
                     CommandParameter="{Binding ElementName=window}"
                     Content="{x:Static p:Resources.SaveSettings}"
+                    FontWeight="Bold"
+                    Foreground="{Binding TextColor}"
                     Style="{StaticResource SettingsButtonStyle}">
                     <Button.ToolTip>
                         <TextBlock

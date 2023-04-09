@@ -13,7 +13,7 @@ using KeyboardTrainerWPF.Properties.Languages;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
-    public class HomeViewModel : DependencyObject
+    public class HomeViewModel : DependencyObject, ISetAppereance
     {
         #region Private Fields
         private Dictionary<Key, KeyButton> _keyboardButtons;
@@ -35,6 +35,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             ProgressbarValueChangedCommand = new RelayCommand(ExecuteProgressbarValueChanged);
 
             _text = "";
+
+            SetAppereance(Properties.Settings.Default.DarkTheme);
         }
 
         public HomeViewModel(Dictionary<Key, KeyButton> keyboard, TextBox textBox, ProgressBar bar)
@@ -50,6 +52,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             ProgressbarValueChangedCommand = new RelayCommand(ExecuteProgressbarValueChanged);
 
             _text = "";
+
+            SetAppereance(Properties.Settings.Default.DarkTheme);
         }
         #endregion
 
@@ -123,7 +127,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             if (obj is KeyEventArgs e && _keyboardButtons.ContainsKey(e.Key))
             {
                 Key key = e.Key;
-                _keyboardButtons[key].KeyGrid.Background = new SolidColorBrush(Color.FromRgb(15, 76, 117));
+                _keyboardButtons[key].KeyGrid.Background = SecondColor;
 
                 switch (key)
                 {
@@ -195,7 +199,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 bool capsIsOn = Keyboard.IsKeyToggled(Key.CapsLock);
                 foreach (KeyButton keyboardButton in _keyboardButtons.Values)
                 {
-                    keyboardButton.UpdateValue(shiftIsOn, capsIsOn);
+                    keyboardButton.UpdateValue(capsIsOn, shiftIsOn);
                 }
             }
             catch (Exception ex)
@@ -223,11 +227,35 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             _speedTracker.Stop();
             _textBox.Text = string.Empty;
             _progressBar.Value = 0;
+            Speed = 0;
+            Fails = 0;
             IsStarted = false;
             StartOrStop = $"{Resources.Start}";
         }
         private void SpeedTracking(object? sender, EventArgs e) =>
             Speed = 60 * Math.Round(_text.Length / (DateTime.Now - _startTime).TotalSeconds);
+        #endregion
+
+
+        #region InterfaceImplementation
+        public Brush TextColor { get; set; }
+        public Brush SecondColor { get; set; }
+        public Brush BackgroundColor { get; set; }
+        public void SetAppereance(bool isDarkTheme)
+        {
+            if (isDarkTheme)
+            {
+                BackgroundColor = new SolidColorBrush(Color.FromRgb(38, 50, 56));
+                TextColor = new SolidColorBrush(Color.FromRgb(236, 239, 241));
+            }
+            else
+            {
+                BackgroundColor = new SolidColorBrush(Color.FromRgb(207, 216, 220));
+                TextColor = new SolidColorBrush(Color.FromRgb(33, 33, 33));
+            }
+            SecondColor = new SolidColorBrush(Color.FromRgb(96, 125, 139));
+            return;
+        }
         #endregion
     }
 }
