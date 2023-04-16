@@ -59,7 +59,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KeyboardTrainerDAL\KeyboardTrainerDAL.csproj" />
+    <ProjectReference Include="..\KeyboardTrainerModel\KeyboardTrainerModel.csproj" />
+    <ProjectReference Include="..\KeyboardTrainerService\KeyboardTrainerService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTrainerWPF", "KeyboardTrainerWPF\KeyboardTrainerWPF.csproj", "{DE17B35D-ACE6-4B4D-8420-01D847A4E6EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyboardTrainerWPF", "KeyboardTrainerWPF\KeyboardTrainerWPF.csproj", "{DE17B35D-ACE6-4B4D-8420-01D847A4E6EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTrainerDAL", "KeyboardTrainerDAL\KeyboardTrainerDAL.csproj", "{9D7B554C-82B7-40F9-B89B-006F6653D81F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTrainerModel", "KeyboardTrainerModel\KeyboardTrainerModel.csproj", "{4BD0A2A6-AA8B-4B32-A393-9307C2D939C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTrainerService", "KeyboardTrainerService\KeyboardTrainerService.csproj", "{76C59D4B-8B44-4188-A8ED-3203670BBF38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{DE17B35D-ACE6-4B4D-8420-01D847A4E6EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE17B35D-ACE6-4B4D-8420-01D847A4E6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE17B35D-ACE6-4B4D-8420-01D847A4E6EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D7B554C-82B7-40F9-B89B-006F6653D81F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D7B554C-82B7-40F9-B89B-006F6653D81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D7B554C-82B7-40F9-B89B-006F6653D81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D7B554C-82B7-40F9-B89B-006F6653D81F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BD0A2A6-AA8B-4B32-A393-9307C2D939C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BD0A2A6-AA8B-4B32-A393-9307C2D939C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BD0A2A6-AA8B-4B32-A393-9307C2D939C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BD0A2A6-AA8B-4B32-A393-9307C2D939C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C59D4B-8B44-4188-A8ED-3203670BBF38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C59D4B-8B44-4188-A8ED-3203670BBF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C59D4B-8B44-4188-A8ED-3203670BBF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C59D4B-8B44-4188-A8ED-3203670BBF38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
