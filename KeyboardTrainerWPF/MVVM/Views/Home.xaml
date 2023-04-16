@@ -98,17 +98,14 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="2"
                 Width="500"
-                Height="50"
                 Margin="50,0,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Background="{Binding SecondColor}"
                 Command="{Binding StartCommand}"
                 Content="{Binding StartOrStop}"
                 Focusable="False"
-                FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
-                FontSize="22"
-                Foreground="White" />
+                Foreground="{Binding TextColor}"
+                Style="{StaticResource SettingsButtonStyle}" />
         </Grid>
 
         <Grid
@@ -134,7 +131,7 @@
                 x:Name="tbTypedText"
                 Grid.Row="1"
                 AllowDrop="False"
-                Background="#B0BEC5"
+                Background="#8EABAF"
                 BorderThickness="1"
                 FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                 FontSize="28"

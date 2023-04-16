@@ -1,5 +1,6 @@
 ﻿using KeyboardTrainerWPF.Core;
 using KeyboardTrainerWPF.MVVM.Views;
+using KeyboardTrainerWPF.Properties.Languages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -163,10 +164,10 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
         #region Commands
         public ICommand LoginCommand { get; }
-        private void Execute_LogIn(object? obj) => new Registration(DataRecorder.ThrowAnExceptionIfAccountHasNotBeenFound).ShowDialog();
+        private void Execute_LogIn(object? obj) => new Registration(DataRecorder.ThrowAnExceptionIfAccountHasNotBeenFound, $"{Resources.RegLogIn}").ShowDialog();
 
         public ICommand SignUpCommand { get; }
-        private void Execute_SignUp(object? obj) => new Registration(DataRecorder.WriteAccount).ShowDialog();
+        private void Execute_SignUp(object? obj) => new Registration(DataRecorder.WriteAccount, $"{Resources.RegSignUp}").ShowDialog();
 
         public ICommand LogOutCommand { get; }
         private void Execute_LogOut(object? obj)
@@ -229,15 +230,14 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             if (isDarkTheme)
             {
                 BackgroundColor = new SolidColorBrush(Color.FromRgb(38, 50, 56));
-                TextColor = new SolidColorBrush(Color.FromRgb(236, 239, 241));
+                TextColor = new SolidColorBrush(Color.FromRgb(245, 245, 245));
             }
             else
             {
-                BackgroundColor = new SolidColorBrush(Color.FromRgb(207, 216, 220));
+                BackgroundColor = new SolidColorBrush(Color.FromRgb(245, 245, 245));
                 TextColor = new SolidColorBrush(Color.FromRgb(33, 33, 33));
             }
-            SecondColor = new SolidColorBrush(Color.FromRgb(96, 125, 139));
-            return;
+            SecondColor = new SolidColorBrush(Color.FromRgb(142, 171, 175));
         }
         #endregion
     }

@@ -31,11 +31,11 @@
 
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#607D8B" />
+                <Setter Property="Background" Value="#8EABAF" />
             </Trigger>
 
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="Gray" />
+                <Setter Property="Foreground" Value="#9E9E9E" />
             </Trigger>
 
         </Style.Triggers>

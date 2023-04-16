@@ -35,9 +35,9 @@ namespace KeyboardTrainerWPF.MVVM.Models.KeyClasses
             var border = new Border
             {
                 Margin = new Thickness(2.0),
-                BorderBrush = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(236, 239, 241)) : new SolidColorBrush(Color.FromRgb(33, 33, 33)),
+                BorderBrush = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(245, 245, 245)) : new SolidColorBrush(Color.FromRgb(33, 33, 33)),
                 BorderThickness = new Thickness(1.5),
-                Background = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(38, 50, 56)) : new SolidColorBrush(Color.FromRgb(220, 221, 225)),
+                Background = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(38, 50, 56)) : new SolidColorBrush(Color.FromRgb(245, 245, 245)),
                 CornerRadius = new CornerRadius(15)
             };
 
@@ -48,7 +48,7 @@ namespace KeyboardTrainerWPF.MVVM.Models.KeyClasses
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontFamily = new System.Windows.Media.FontFamily("/Fonts/Nunito_Sans/#NunitoSans"),
-                Foreground = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(236, 239, 241)) : new SolidColorBrush(Color.FromRgb(33, 33, 33)),
+                Foreground = Properties.Settings.Default.DarkTheme == true ? new SolidColorBrush(Color.FromRgb(245, 245, 245)) : new SolidColorBrush(Color.FromRgb(33, 33, 33)),
                 FontWeight = FontWeights.Bold
             };
 

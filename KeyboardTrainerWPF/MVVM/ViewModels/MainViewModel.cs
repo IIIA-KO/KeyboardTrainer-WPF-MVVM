@@ -39,10 +39,10 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         public object CurrentView
         {
             get { return (object)GetValue(CurrentViewProperty); }
-            set 
-            { 
+            set
+            {
                 SetValue(CurrentViewProperty, value);
-                User = Properties.Settings.Default.UserName; 
+                User = Properties.Settings.Default.UserName;
             }
         }
         public static readonly DependencyProperty CurrentViewProperty =
@@ -55,7 +55,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             HomeVM = new HomeViewModel();
             RecordsTableVM = new RecordsTableViewModel();
-            TrainVM= new TrainViewModel();
+            TrainVM = new TrainViewModel();
             SettingsVM = new SettingsViewModel();
 
             CurrentView = HomeVM;
@@ -66,8 +66,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 CurrentView = HomeVM;
             });
 
-            RecordsTableViewCommand = new RelayCommand(x => 
-            { 
+            RecordsTableViewCommand = new RelayCommand(x =>
+            {
                 CurrentView = RecordsTableVM;
             });
 
@@ -94,15 +94,14 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             if (isDarkTheme)
             {
                 BackgroundColor = new SolidColorBrush(Color.FromRgb(38, 50, 56));
-                TextColor = new SolidColorBrush(Color.FromRgb(236, 239, 241));
+                TextColor = new SolidColorBrush(Color.FromRgb(245, 245, 245));
             }
             else
             {
-                BackgroundColor = new SolidColorBrush(Color.FromRgb(207, 216, 220));
+                BackgroundColor = new SolidColorBrush(Color.FromRgb(245, 245, 245));
                 TextColor = new SolidColorBrush(Color.FromRgb(33, 33, 33));
             }
-            SecondColor = new SolidColorBrush(Color.FromRgb(96, 125, 139));
-            return;
+            SecondColor = new SolidColorBrush(Color.FromRgb(142, 171, 175));
         }
         #endregion
     }

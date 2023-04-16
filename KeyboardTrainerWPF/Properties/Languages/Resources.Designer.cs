@@ -187,6 +187,42 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string RegLogIn {
+            get {
+                return ResourceManager.GetString("RegLogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string RegPassword {
+            get {
+                return ResourceManager.GetString("RegPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SignUp.
+        /// </summary>
+        public static string RegSignUp {
+            get {
+                return ResourceManager.GetString("RegSignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User name.
+        /// </summary>
+        public static string RegUserName {
+            get {
+                return ResourceManager.GetString("RegUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save settings.
         /// </summary>
         public static string SaveSettings {
@@ -246,6 +282,15 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         public static string Stop {
             get {
                 return ResourceManager.GetString("Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
             }
         }
         

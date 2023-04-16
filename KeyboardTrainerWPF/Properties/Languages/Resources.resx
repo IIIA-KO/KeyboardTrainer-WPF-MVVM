@@ -159,6 +159,18 @@
   <data name="RecorsTable" xml:space="preserve">
     <value>Records Table</value>
   </data>
+  <data name="RegLogIn" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="RegPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="RegSignUp" xml:space="preserve">
+    <value>SignUp</value>
+  </data>
+  <data name="RegUserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
   <data name="SaveSettings" xml:space="preserve">
     <value>Save settings</value>
   </data>
@@ -179,6 +191,9 @@
   </data>
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="TextLanguage" xml:space="preserve">
     <value>Text language</value>

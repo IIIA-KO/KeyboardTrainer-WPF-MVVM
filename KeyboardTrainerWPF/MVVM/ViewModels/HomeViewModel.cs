@@ -246,15 +246,14 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             if (isDarkTheme)
             {
                 BackgroundColor = new SolidColorBrush(Color.FromRgb(38, 50, 56));
-                TextColor = new SolidColorBrush(Color.FromRgb(236, 239, 241));
+                TextColor = new SolidColorBrush(Color.FromRgb(245, 245, 245));
             }
             else
             {
-                BackgroundColor = new SolidColorBrush(Color.FromRgb(207, 216, 220));
+                BackgroundColor = new SolidColorBrush(Color.FromRgb(245, 245, 245));
                 TextColor = new SolidColorBrush(Color.FromRgb(33, 33, 33));
             }
-            SecondColor = new SolidColorBrush(Color.FromRgb(96, 125, 139));
-            return;
+            SecondColor = new SolidColorBrush(Color.FromRgb(142, 171, 175));
         }
         #endregion
     }

@@ -159,6 +159,18 @@
   <data name="RecorsTable" xml:space="preserve">
     <value>Таблиця рекордів</value>
   </data>
+  <data name="RegLogIn" xml:space="preserve">
+    <value>Вхід</value>
+  </data>
+  <data name="RegPassword" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="RegSignUp" xml:space="preserve">
+    <value>Реєстрація</value>
+  </data>
+  <data name="RegUserName" xml:space="preserve">
+    <value>Ім'я користувача</value>
+  </data>
   <data name="SaveSettings" xml:space="preserve">
     <value>Зберегти налаштування</value>
   </data>
@@ -179,6 +191,9 @@
   </data>
   <data name="Stop" xml:space="preserve">
     <value>Зупинити</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Підтвердити</value>
   </data>
   <data name="TextLanguage" xml:space="preserve">
     <value>Мова тексту</value>

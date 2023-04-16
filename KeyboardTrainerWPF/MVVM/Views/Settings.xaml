@@ -181,7 +181,7 @@
                     Grid.Column="0"
                     Width="20"
                     Height="20"
-                    Margin="20,0"
+                    Margin="20,0,0,0"
                     HorizontalAlignment="Left"
                     Style="{StaticResource CheckBoxTheme}">
                     <behavior:Interaction.Triggers>
@@ -249,7 +249,7 @@
                     Style="{StaticResource SettingsButtonStyle}">
                     <Button.ToolTip>
                         <TextBlock
-                            Width="10"
+                            Width="100"
                             Text="{x:Static p:Resources.SavingMessage}"
                             TextWrapping="Wrap" />
                     </Button.ToolTip>
