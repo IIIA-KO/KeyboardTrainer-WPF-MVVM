@@ -97,6 +97,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Data\KeyboardTrainerDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Images\keyboard.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1,4 +1,5 @@
-﻿using KeyboardTrainerWPF.Core;
+﻿using KeyboardTrainerModel.Interfaces;
+using KeyboardTrainerWPF.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
     internal class MainViewModel : DependencyObject, ISetAppereance
     {
-        #region Puvblic Commands
+        #region Private Fields
+        private readonly IUserService users;
+        private readonly IScoreService scores;
+        private readonly ITextService texts;
+        #endregion
+
+        #region Public Commands
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand RecordsTableViewCommand { get; set; }
         public RelayCommand TrainViewCommand { get; set; }
@@ -51,8 +58,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
 
         #region Public Constractor
-        public MainViewModel()
+        public MainViewModel(IUserService userService, IScoreService scoreService, ITextService textService)
         {
+            users = userService;
+            scores = scoreService;
+            texts = textService;
+
             HomeVM = new HomeViewModel();
             RecordsTableVM = new RecordsTableViewModel();
             TrainVM = new TrainViewModel();

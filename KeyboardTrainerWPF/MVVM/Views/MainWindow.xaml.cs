@@ -1,4 +1,6 @@
-﻿using KeyboardTrainerWPF.Core;
+﻿using KeyboardTrainerModel.Interfaces;
+using KeyboardTrainerWPF.Core;
+using KeyboardTrainerWPF.MVVM.ViewModels;
 using System.Windows;
 using System.Windows.Input;
 
@@ -6,9 +8,17 @@ namespace KeyboardTrainerWPF
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IUserService users;
+        private readonly IScoreService scores;
+        private readonly ITextService texts;
+
+        public MainWindow(IUserService userService, IScoreService scoreService, ITextService textService)
         {
             InitializeComponent();
+            users = userService;
+            scores = scoreService;
+            texts = textService;
+            DataContext = new MainViewModel(users, scores, texts);
         }
         
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

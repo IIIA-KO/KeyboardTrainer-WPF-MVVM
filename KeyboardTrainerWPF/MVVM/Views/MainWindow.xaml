@@ -21,9 +21,9 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <viewModel:MainViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Border Background="{Binding BackgroundColor}" CornerRadius="20">
         <Grid>
