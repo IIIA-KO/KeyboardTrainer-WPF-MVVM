@@ -10,12 +10,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using KeyboardTrainerWPF.Properties.Languages;
+using KeyboardTrainerModel.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
     public class HomeViewModel : DependencyObject, ISetAppereance
     {
         #region Private Fields
+        private readonly IUserService users;
+        private readonly IScoreService scores;
+        private readonly ITextService texts;
+
         private Dictionary<Key, KeyButton> _keyboardButtons;
         private TextBox _textBox;
         private ProgressBar _progressBar;
@@ -26,8 +32,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #endregion
 
         #region Public Constructors
-        public HomeViewModel()
+        public HomeViewModel(IUserService userService, IScoreService scoreService, ITextService textService)
         {
+            users = userService;
+            scores = scoreService;
+            texts = textService;
+
             _keyboardButtons = new Dictionary<Key, KeyButton>();
             StartCommand = new RelayCommand(ExecuteStart);
             KeyDownCommand = new RelayCommand(ExecuteKeyDown, CanExecuteKeys);
@@ -41,6 +51,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
         public HomeViewModel(Dictionary<Key, KeyButton> keyboard, TextBox textBox, ProgressBar bar)
         {
+            var serviceProvider = ((App)Application.Current).Services;
+            if (serviceProvider == null) throw new NullReferenceException(nameof(serviceProvider));
+            users = serviceProvider.GetService<IUserService>();
+            scores = serviceProvider.GetService<IScoreService>();
+            texts = serviceProvider.GetService<ITextService>();
+
             _keyboardButtons = keyboard;
             _textBox = textBox;
             _progressBar = bar;

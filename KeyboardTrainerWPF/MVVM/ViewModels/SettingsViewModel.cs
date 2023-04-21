@@ -1,6 +1,9 @@
-﻿using KeyboardTrainerWPF.Core;
+﻿using KeyboardTrainerModel.Interfaces;
+using KeyboardTrainerService;
+using KeyboardTrainerWPF.Core;
 using KeyboardTrainerWPF.MVVM.Views;
 using KeyboardTrainerWPF.Properties.Languages;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,18 +24,24 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #region Private Fields
         private ComboBox _comboBox;
         private CheckBox _checkBox;
+        private readonly IUserService users;
+        private readonly IScoreService scores;
+        private readonly ITextService texts;
         #endregion
 
         #region Public Constuctors
-        public SettingsViewModel()
+        public SettingsViewModel(IUserService userService, IScoreService scoreService, ITextService textService)
         {
+            users = userService;
+            scores = scoreService;
+            texts = textService;
+
             UserName = Properties.Settings.Default.UserName;
             Complexity = Properties.Settings.Default.Complexity;
             LanguageCode = Properties.Settings.Default.LanguageCode;
             IsDarkTheme = Properties.Settings.Default.DarkTheme;
 
             Languages = new ObservableCollection<string>() { "English", "Українська" };
-
 
             _comboBox = new ComboBox();
             _checkBox = new CheckBox();
@@ -69,6 +78,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
         public SettingsViewModel(ComboBox comboBox, CheckBox checkBox)
         {
+            var serviceProvider = ((App)Application.Current).Services;
+            if (serviceProvider == null) throw new NullReferenceException(nameof(serviceProvider));
+            users = serviceProvider.GetService<IUserService>();
+            scores = serviceProvider.GetService<IScoreService>();
+            texts = serviceProvider.GetService<ITextService>();
+
             UserName = Properties.Settings.Default.UserName;
             Complexity = Properties.Settings.Default.Complexity;
             LanguageCode = Properties.Settings.Default.LanguageCode;

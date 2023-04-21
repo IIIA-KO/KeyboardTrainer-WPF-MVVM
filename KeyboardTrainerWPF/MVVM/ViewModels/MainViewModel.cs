@@ -64,10 +64,10 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             scores = scoreService;
             texts = textService;
 
-            HomeVM = new HomeViewModel();
+            HomeVM = new HomeViewModel(users, scores, texts);
             RecordsTableVM = new RecordsTableViewModel();
             TrainVM = new TrainViewModel();
-            SettingsVM = new SettingsViewModel();
+            SettingsVM = new SettingsViewModel(users, scores, texts);
 
             CurrentView = HomeVM;
             User = Properties.Settings.Default.UserName;

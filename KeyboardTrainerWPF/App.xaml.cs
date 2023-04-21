@@ -8,12 +8,14 @@ using System.Threading;
 using System.Windows;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
+using KeyboardTrainerWPF.MVVM.Views;
 
 namespace KeyboardTrainerWPF
 {
     public partial class App : Application
     {
         private IServiceProvider _serviceProvider;
+        public IServiceProvider Services { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -28,6 +30,7 @@ namespace KeyboardTrainerWPF
                 .AddSingleton<MainWindow>();
 
             _serviceProvider = serviceCollection.BuildServiceProvider();
+            Services = _serviceProvider;
 
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
