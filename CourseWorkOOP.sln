@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyboardTrainerWPF", "KeyboardTrainerWPF\KeyboardTrainerWPF.csproj", "{DE17B35D-ACE6-4B4D-8420-01D847A4E6EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTrainerDAL", "KeyboardTrainerDAL\KeyboardTrainerDAL.csproj", "{9D7B554C-82B7-40F9-B89B-006F6653D81F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyboardTrainerDAL", "KeyboardTrainerDAL\KeyboardTrainerDAL.csproj", "{9D7B554C-82B7-40F9-B89B-006F6653D81F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTrainerModel", "KeyboardTrainerModel\KeyboardTrainerModel.csproj", "{4BD0A2A6-AA8B-4B32-A393-9307C2D939C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyboardTrainerModel", "KeyboardTrainerModel\KeyboardTrainerModel.csproj", "{4BD0A2A6-AA8B-4B32-A393-9307C2D939C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTrainerService", "KeyboardTrainerService\KeyboardTrainerService.csproj", "{76C59D4B-8B44-4188-A8ED-3203670BBF38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyboardTrainerService", "KeyboardTrainerService\KeyboardTrainerService.csproj", "{76C59D4B-8B44-4188-A8ED-3203670BBF38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -120,6 +120,15 @@
   <data name="Account" xml:space="preserve">
     <value>Обліковий запис</value>
   </data>
+  <data name="AccountExits" xml:space="preserve">
+    <value>уже існує</value>
+  </data>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>Обліковий запис не було знайдено</value>
+  </data>
+  <data name="AccountQuitMessage" xml:space="preserve">
+    <value>ви успішоно вийшли зі свого облікового запису</value>
+  </data>
   <data name="Appereance" xml:space="preserve">
     <value>Зовнішній вигляд</value>
   </data>
@@ -150,11 +159,17 @@
   <data name="Light" xml:space="preserve">
     <value>Світла</value>
   </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Неправильний логін або пароль</value>
+  </data>
   <data name="LoginIn" xml:space="preserve">
     <value>Увійти</value>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Вийти</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Вихід</value>
   </data>
   <data name="RecorsTable" xml:space="preserve">
     <value>Таблиця рекордів</value>
@@ -171,6 +186,9 @@
   <data name="RegUserName" xml:space="preserve">
     <value>Ім'я користувача</value>
   </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Збереження</value>
+  </data>
   <data name="SaveSettings" xml:space="preserve">
     <value>Зберегти налаштування</value>
   </data>
@@ -179,6 +197,9 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Налаштування</value>
+  </data>
+  <data name="SettingsSavedMessage" xml:space="preserve">
+    <value>Налаштування було збережено</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Зареєструватися</value>

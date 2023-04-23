@@ -120,6 +120,15 @@
   <data name="Account" xml:space="preserve">
     <value>Account</value>
   </data>
+  <data name="AccountExits" xml:space="preserve">
+    <value>already exists</value>
+  </data>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>Account hasn't been found</value>
+  </data>
+  <data name="AccountQuitMessage" xml:space="preserve">
+    <value>you have successfuly quit your account</value>
+  </data>
   <data name="Appereance" xml:space="preserve">
     <value>Appereance</value>
   </data>
@@ -150,11 +159,17 @@
   <data name="Light" xml:space="preserve">
     <value>Light</value>
   </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Wrong login or password</value>
+  </data>
   <data name="LoginIn" xml:space="preserve">
     <value>Log In</value>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>LogOut</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quit</value>
   </data>
   <data name="RecorsTable" xml:space="preserve">
     <value>Records Table</value>
@@ -171,6 +186,9 @@
   <data name="RegUserName" xml:space="preserve">
     <value>User name</value>
   </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
   <data name="SaveSettings" xml:space="preserve">
     <value>Save settings</value>
   </data>
@@ -179,6 +197,9 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="SettingsSavedMessage" xml:space="preserve">
+    <value>Settings were saved</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>

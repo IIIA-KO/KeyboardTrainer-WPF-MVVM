@@ -1,10 +1,6 @@
 ﻿using KeyboardTrainerWPF.Core;
-using KeyboardTrainerWPF.MVVM.Views;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -63,7 +59,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Account hasn't been found", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, $"{Properties.Languages.Resources.AccountNotFound}", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

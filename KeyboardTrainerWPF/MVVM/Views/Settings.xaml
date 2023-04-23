@@ -4,10 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:KeyboardTrainerWPF.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:KeyboardTrainerWPF.Properties.Languages"
-    xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     x:Name="window"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -75,33 +73,26 @@
                     FontSize="24"
                     Foreground="{Binding TextColor}" />
 
-                <StackPanel
+                <ComboBox
+                    x:Name="comboBoxTextLanguageSelect"
                     Grid.Row="1"
                     Grid.Column="1"
-                    Orientation="Horizontal">
-                    <RadioButton
-                        x:Name="rbEnglish"
-                        Height="24"
-                        Margin="20,0,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Content="{x:Static p:Resources.EnglishLang}"
-                        FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
-                        FontSize="20"
-                        Foreground="{Binding TextColor}"
-                        IsChecked="True" />
+                    Width="200"
+                    Height="30"
+                    Margin="25,0,50,0"
+                    HorizontalAlignment="Left"
+                    FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
+                    FontSize="18"
+                    ItemsSource="{Binding Languages}"
+                    SelectedIndex="{Binding TextLanguageSelectedIndex, Mode=TwoWay}"
+                    Style="{DynamicResource ComboBoxStyle}">
 
-                    <RadioButton
-                        x:Name="rbUkrainian"
-                        Height="24"
-                        Margin="20,0,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Content="{x:Static p:Resources.UkrainianLang}"
-                        FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
-                        FontSize="20"
-                        Foreground="{Binding TextColor}" />
-                </StackPanel>
+                    <behavior:Interaction.Triggers>
+                        <behavior:EventTrigger EventName="SelectionChanged">
+                            <behavior:InvokeCommandAction Command="{Binding TextLanguageBoxSelectionChanged}" />
+                        </behavior:EventTrigger>
+                    </behavior:Interaction.Triggers>
+                </ComboBox>
             </Grid>
         </GroupBox>
 
@@ -216,7 +207,7 @@
                     FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                     FontSize="18"
                     ItemsSource="{Binding Languages}"
-                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                    SelectedIndex="{Binding LanguageSelectedIndex, Mode=TwoWay}"
                     Style="{DynamicResource ComboBoxStyle}">
 
                     <behavior:Interaction.Triggers>

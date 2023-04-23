@@ -6,9 +6,8 @@ using System.Globalization;
 using KeyboardTrainerService;
 using System.Threading;
 using System.Windows;
-using System.Configuration;
-using Microsoft.EntityFrameworkCore;
-using KeyboardTrainerWPF.MVVM.Views;
+using Text = KeyboardTrainerModel.Text;
+using System.Collections.Generic;
 
 namespace KeyboardTrainerWPF
 {

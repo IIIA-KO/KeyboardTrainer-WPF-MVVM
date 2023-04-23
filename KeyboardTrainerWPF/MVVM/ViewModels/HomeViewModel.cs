@@ -12,6 +12,8 @@ using System.Windows.Threading;
 using KeyboardTrainerWPF.Properties.Languages;
 using KeyboardTrainerModel.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
+using KeyboardTrainerModel;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
@@ -29,6 +31,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private DispatcherTimer _speedTracker = new() { Interval = TimeSpan.FromMilliseconds(1000) };
         private DateTime _startTime;
         public double _complexity = Properties.Settings.Default.Complexity;
+        private Text _filteredText;
+        private User _currentUser;
         #endregion
 
         #region Public Constructors
@@ -45,22 +49,32 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             ProgressbarValueChangedCommand = new RelayCommand(ExecuteProgressbarValueChanged);
 
             _text = "";
-
             SetAppereance(Properties.Settings.Default.DarkTheme);
         }
 
         public HomeViewModel(Dictionary<Key, KeyButton> keyboard, TextBox textBox, ProgressBar bar)
         {
-            var serviceProvider = ((App)Application.Current).Services;
-            if (serviceProvider == null) throw new NullReferenceException(nameof(serviceProvider));
-            users = serviceProvider.GetService<IUserService>();
-            scores = serviceProvider.GetService<IScoreService>();
-            texts = serviceProvider.GetService<ITextService>();
+            try
+            {
+                var serviceProvider = ((App)Application.Current).Services;
+                if (serviceProvider == null) throw new NullReferenceException(nameof(serviceProvider));
+                users = serviceProvider.GetService<IUserService>();
+                scores = serviceProvider.GetService<IScoreService>();
+                texts = serviceProvider.GetService<ITextService>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             _keyboardButtons = keyboard;
             _textBox = textBox;
             _progressBar = bar;
             _speedTracker.Tick += SpeedTracking;
+            if (User != "Guest")
+            {
+                _currentUser = users.GetUserByLogin(User);
+            }
 
             StartCommand = new RelayCommand(ExecuteStart);
             KeyDownCommand = new RelayCommand(ExecuteKeyDown, CanExecuteKeys);
@@ -126,7 +140,21 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 Fails = 0;
                 Speed = 0.0;
                 _text = string.Empty;
-                _textBox.Text = DataRecorder.GetText(_complexity);
+
+                try
+                {
+                    _filteredText = texts.GetTextByLanguageCode(Properties.Settings.Default.TextLanguageCode)
+                                         .Where(t => t.Complexity == Properties.Settings.Default.Complexity)
+                                         .OrderBy(x => Random.Shared.Next())
+                                         .FirstOrDefault();
+                }
+                catch (NullReferenceException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error. Null Reference Exception: Could not get data from database", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                _textBox.Text = _filteredText.TextContent;
                 _textBox.Focus();
                 _progressBar.Maximum = _textBox.Text.Length;
                 _progressBar.Value = 0;
@@ -151,8 +179,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     case Key.RightCtrl:
                     case Key.LWin:
                     case Key.RWin:
-                    case Key.RightAlt:
                     case Key.LeftAlt:
+                    case Key.RightAlt:
                     case Key.Back:
                         return;
 
@@ -196,12 +224,17 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 Stop();
                 TimeSpan duration = _startTime - DateTime.Now;
                 MessageBox.Show(
-                    $"Fails: {Fails}\nSpeed: {Speed}", "Game over!",
+                    $"{Properties.Languages.Resources.Fails}: {Fails}\n{Properties.Languages.Resources.Speed}: {Speed}", "Game over!",
                     MessageBoxButton.OK, MessageBoxImage.Information);
 
                 if (User != "Guest")
-                    DataRecorder.WriteResaults(new UserScoreModel(User, _startTime, duration, Fails, Speed, _complexity));
+                {
+                    var score = new Score { User = _currentUser, Text = _filteredText, Complexity = _complexity, Duration = duration, Fails = Fails, SessionBeginning = _startTime, Speed = Speed };
+                    scores.Add(score);
+                }
                 _progressBar.Value = 0;
+                Speed = 0;
+                Fails = 0;
             }
         }
         #endregion
@@ -242,9 +275,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             _speedTracker.Stop();
             _textBox.Text = string.Empty;
-            _progressBar.Value = 0;
-            Speed = 0;
-            Fails = 0;
+            _textBox.Foreground = Brushes.Black;
             IsStarted = false;
             StartOrStop = $"{Resources.Start}";
         }

@@ -1,17 +1,13 @@
-﻿using KeyboardTrainerModel.Interfaces;
-using KeyboardTrainerService;
+﻿using KeyboardTrainerModel;
+using KeyboardTrainerModel.Interfaces;
 using KeyboardTrainerWPF.Core;
 using KeyboardTrainerWPF.MVVM.Views;
 using KeyboardTrainerWPF.Properties.Languages;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,7 +18,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
     public class SettingsViewModel : DependencyObject, ISetAppereance
     {
         #region Private Fields
-        private ComboBox _comboBox;
+        private ComboBox _languageComboBox;
+        private ComboBox _textLanguageComboBox;
         private CheckBox _checkBox;
         private readonly IUserService users;
         private readonly IScoreService scores;
@@ -43,17 +40,27 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             Languages = new ObservableCollection<string>() { "English", "Українська" };
 
-            _comboBox = new ComboBox();
+            _languageComboBox = new ComboBox();
             _checkBox = new CheckBox();
 
             switch (Properties.Settings.Default.LanguageCode)
             {
                 case "uk-UA":
-                    SelectedIndex = 1;
+                    LanguageSelectedIndex = 1;
                     break;
 
                 default:
-                    SelectedIndex = 0;
+                    LanguageSelectedIndex = 0;
+                    break;
+            }
+            switch (Properties.Settings.Default.TextLanguageCode)
+            {
+                case "uk-UA":
+                    TextLanguageSelectedIndex = 1;
+                    break;
+
+                default:
+                    TextLanguageSelectedIndex = 0;
                     break;
             }
             switch (Properties.Settings.Default.DarkTheme)
@@ -67,16 +74,17 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     break;
             }
 
-            LoginCommand = new RelayCommand(Execute_LogIn);
-            SignUpCommand = new RelayCommand(Execute_SignUp);
-            LogOutCommand = new RelayCommand(Execute_LogOut);
+            LoginCommand = new RelayCommand(ExecuteLogIn);
+            SignUpCommand = new RelayCommand(ExecuteSignUp);
+            LogOutCommand = new RelayCommand(ExecuteLogOut);
             SaveCommand = new RelayCommand(Execute_Save);
             LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
+            TextLanguageBoxSelectionChanged = new RelayCommand(ExecuteTextLanguageChanged);
             ThemeChanged = new RelayCommand(ExecuteThemeChanged);
             SetAppereance(Properties.Settings.Default.DarkTheme);
         }
 
-        public SettingsViewModel(ComboBox comboBox, CheckBox checkBox)
+        public SettingsViewModel(ComboBox languageComboBox, ComboBox textLanguageComboBox, CheckBox checkBox)
         {
             var serviceProvider = ((App)Application.Current).Services;
             if (serviceProvider == null) throw new NullReferenceException(nameof(serviceProvider));
@@ -91,17 +99,28 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             Languages = new ObservableCollection<string>() { "English", "Українська" };
 
-            _comboBox = comboBox;
+            _languageComboBox = languageComboBox;
+            _textLanguageComboBox = textLanguageComboBox;
             _checkBox = checkBox;
 
             switch (Properties.Settings.Default.LanguageCode)
             {
                 case "uk-UA":
-                    SelectedIndex = 1;
+                    LanguageSelectedIndex = 1;
                     break;
 
                 default:
-                    SelectedIndex = 0;
+                    LanguageSelectedIndex = 0;
+                    break;
+            }
+            switch (Properties.Settings.Default.TextLanguageCode)
+            {
+                case "uk-UA":
+                    TextLanguageSelectedIndex = 1;
+                    break;
+
+                default:
+                    TextLanguageSelectedIndex = 0;
                     break;
             }
             switch (Properties.Settings.Default.DarkTheme)
@@ -115,11 +134,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     break;
             }
 
-            LoginCommand = new RelayCommand(Execute_LogIn);
-            SignUpCommand = new RelayCommand(Execute_SignUp);
-            LogOutCommand = new RelayCommand(Execute_LogOut);
+            LoginCommand = new RelayCommand(ExecuteLogIn);
+            SignUpCommand = new RelayCommand(ExecuteSignUp);
+            LogOutCommand = new RelayCommand(ExecuteLogOut);
             SaveCommand = new RelayCommand(Execute_Save);
             LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
+            TextLanguageBoxSelectionChanged = new RelayCommand(ExecuteTextLanguageChanged);
             ThemeChanged = new RelayCommand(ExecuteThemeChanged);
             SetAppereance(Properties.Settings.Default.DarkTheme);
         }
@@ -128,7 +148,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #region Public Properties
         public ObservableCollection<string> Languages { get; set; }
         #endregion
-
 
         #region Dependency Properties
         public string UserName
@@ -167,29 +186,37 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             DependencyProperty.Register("LanguageCode", typeof(string), typeof(SettingsViewModel),
                 new PropertyMetadata(Properties.Settings.Default.LanguageCode));
 
-        public int SelectedIndex
+        public int LanguageSelectedIndex
         {
-            get { return (int)GetValue(SelectedIndexProperty); }
-            set { SetValue(SelectedIndexProperty, value); }
+            get { return (int)GetValue(LanguageSelectedIndexProperty); }
+            set { SetValue(LanguageSelectedIndexProperty, value); }
         }
-        public static readonly DependencyProperty SelectedIndexProperty =
-            DependencyProperty.Register("SelectedIndex", typeof(int), typeof(SettingsViewModel), new PropertyMetadata(0));
+        public static readonly DependencyProperty LanguageSelectedIndexProperty =
+            DependencyProperty.Register("LanguageSelectedIndex", typeof(int), typeof(SettingsViewModel), new PropertyMetadata(0));
+
+        public int TextLanguageSelectedIndex
+        {
+            get { return (int)GetValue(TextLanguageSelectedIndexProperty); }
+            set { SetValue(TextLanguageSelectedIndexProperty, value); }
+        }
+        public static readonly DependencyProperty TextLanguageSelectedIndexProperty =
+            DependencyProperty.Register("TextLanguageSelectedIndex", typeof(int), typeof(SettingsViewModel), new PropertyMetadata(0));
         #endregion
 
 
         #region Commands
         public ICommand LoginCommand { get; }
-        private void Execute_LogIn(object? obj) => new Registration(DataRecorder.ThrowAnExceptionIfAccountHasNotBeenFound, $"{Resources.RegLogIn}").ShowDialog();
+        private void ExecuteLogIn(object? obj) => new Registration(TryLogIn, $"{Resources.RegLogIn}").ShowDialog();
 
         public ICommand SignUpCommand { get; }
-        private void Execute_SignUp(object? obj) => new Registration(DataRecorder.WriteAccount, $"{Resources.RegSignUp}").ShowDialog();
+        private void ExecuteSignUp(object? obj) => new Registration(CreateAccount, $"{Resources.RegSignUp}").ShowDialog();
 
         public ICommand LogOutCommand { get; }
-        private void Execute_LogOut(object? obj)
+        private void ExecuteLogOut(object? obj)
         {
             if (Properties.Settings.Default.UserName != "Guest")
             {
-                MessageBox.Show($"{Properties.Settings.Default.UserName}, you have successfuly quit your account", "Quit",
+                MessageBox.Show($"{Properties.Settings.Default.UserName}, {Resources.AccountQuitMessage}", $"{Resources.Quit}",
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Properties.Settings.Default.UserName = "Guest";
             }
@@ -202,7 +229,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             {
                 Properties.Settings.Default.Complexity = Complexity;
                 Properties.Settings.Default.Save();
-                if (MessageBox.Show("Settings were saved", "Saved!", MessageBoxButton.OK, MessageBoxImage.Exclamation) == MessageBoxResult.OK)
+                if (MessageBox.Show($"{Resources.SettingsSavedMessage}", $"{Resources.Saved}", MessageBoxButton.OK, MessageBoxImage.Exclamation) == MessageBoxResult.OK)
                 {
                     var currentExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
                     Process.Start(currentExecutablePath);
@@ -215,16 +242,26 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         public ICommand LanguageComboBoxSelectionChanged { get; }
         private void ExecuteLanguageChanged(object? obj)
         {
-            if (_comboBox != null)
+            if (_languageComboBox != null)
             {
                 string[] languageCodes = new[] { "en-US", "uk-UA" };
-                Properties.Settings.Default.LanguageCode = languageCodes[_comboBox.SelectedIndex];
+                Properties.Settings.Default.LanguageCode = languageCodes[_languageComboBox.SelectedIndex];
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public ICommand TextLanguageBoxSelectionChanged { get; }
+        private void ExecuteTextLanguageChanged(object? obj)
+        {
+            if (_textLanguageComboBox != null)
+            {
+                string[] languageCodes = new[] { "en-US", "uk-UA" };
+                Properties.Settings.Default.TextLanguageCode = languageCodes[_textLanguageComboBox.SelectedIndex];
                 Properties.Settings.Default.Save();
             }
         }
 
         public ICommand ThemeChanged { get; }
-        
         private void ExecuteThemeChanged(object? obj)
         {
             if (_checkBox != null)
@@ -235,6 +272,38 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         }
         #endregion
 
+        #region Private Methods
+        private void TryLogIn(string login, string password)
+        {
+            var user = users.GetUserByLogin(login);
+
+            if (user != null && user.Password == password)
+            {
+                Properties.Settings.Default.UserName = login;
+                Properties.Settings.Default.Save();
+            }
+            else throw new ArgumentException($"{Resources.LoginError}");
+        }
+        public void CreateAccount(string login, string password)
+        {
+            var user = users.GetUserByLogin(login);
+
+            if (user != null)
+                throw new ArgumentException($"{login} {Resources.AccountExits}.");
+
+            try
+            {
+                users.Add(new User { Login = login, Password = password});
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            Properties.Settings.Default.UserName = login;
+            Properties.Settings.Default.Save();
+        }
+        #endregion
 
         #region InterfaceImplementation
         public Brush TextColor { get; set; }
