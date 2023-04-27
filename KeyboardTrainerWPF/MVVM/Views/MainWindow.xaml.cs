@@ -1,5 +1,4 @@
 ﻿using KeyboardTrainerModel.Interfaces;
-using KeyboardTrainerWPF.Core;
 using KeyboardTrainerWPF.MVVM.ViewModels;
 using System.Windows;
 using System.Windows.Input;
@@ -37,8 +36,8 @@ namespace KeyboardTrainerWPF
                 if (isMaximazed)
                 {
                     this.WindowState = WindowState.Normal;
-                    this.Width = 1280;
-                    this.Height = 720;
+                    //this.Width = 1280;
+                    //this.Height = 720;
                     isMaximazed = false;
                 }
                 else
@@ -54,6 +53,5 @@ namespace KeyboardTrainerWPF
         {
             this.Close();
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using KeyboardTrainerWPF.Core;
-using KeyboardTrainerWPF.MVVM.Models.KeyClasses;
+﻿using KeyboardTrainerWPF.MVVM.Models.KeyClasses;
 using KeyboardTrainerWPF.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;

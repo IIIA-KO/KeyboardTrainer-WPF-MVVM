@@ -29,7 +29,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #region Public Fields
         public HomeViewModel HomeVM { get; set; }
         public RecordsTableViewModel RecordsTableVM { get; set; }
-        public TrainViewModel TrainVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
         #endregion
 
@@ -66,7 +65,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             HomeVM = new HomeViewModel(users, scores, texts);
             RecordsTableVM = new RecordsTableViewModel();
-            TrainVM = new TrainViewModel();
             SettingsVM = new SettingsViewModel(users, scores, texts);
 
             CurrentView = HomeVM;
@@ -80,12 +78,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             RecordsTableViewCommand = new RelayCommand(x =>
             {
                 CurrentView = RecordsTableVM;
-            });
-
-            TrainViewCommand = new RelayCommand(x =>
-            {
-                CurrentView = TrainVM;
-            });
+            });;
 
             SettingsViewCommand = new RelayCommand(x =>
             {

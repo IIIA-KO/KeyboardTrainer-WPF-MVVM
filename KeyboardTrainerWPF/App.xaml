@@ -19,10 +19,6 @@
                 <view:Home />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:TrainViewModel}">
-                <view:Train />
-            </DataTemplate>
-
             <DataTemplate DataType="{x:Type viewModel:RecordsTableViewModel}">
                 <view:RecordsTable />
             </DataTemplate>

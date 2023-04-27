@@ -64,7 +64,14 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             }
         }
         private bool CanExecuteOK(object? obj)
-            => _password?.Password.Count(i => i < 32 && i > 126) == 0 && _password.Password.Length > 6 && _login?.Text.Length >= 4 && _login.Text != "Guest";
+        {
+            return _password.Password.Count(i => i < 32 && i > 126) == 0
+                && _password.Password.Length >= 8
+                && _password.Password.Any(char.IsUpper)
+                && _password.Password.Any(char.IsDigit)
+                && _login.Text.Length >= 4
+                && _login.Text != "Guest";
+        }
         #endregion
 
 

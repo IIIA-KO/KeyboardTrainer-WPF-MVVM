@@ -235,7 +235,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     Process.Start(currentExecutablePath);
                     Application.Current.Shutdown();
                 }
-
             }
         }
 

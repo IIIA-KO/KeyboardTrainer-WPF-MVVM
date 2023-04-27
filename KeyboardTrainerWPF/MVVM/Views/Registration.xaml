@@ -3,10 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:KeyboardTrainerWPF.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:KeyboardTrainerWPF.Properties.Languages"
-    xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     x:Name="window"
     Width="400"
     Height="600"
@@ -57,7 +55,14 @@
                 <Image
                     Width="Auto"
                     Height="130"
-                    Source="/Images/keyboardIcon/keyboard-1.png" />
+                    Source="/Images/keyboardIcon/keyboard-1.png">
+                    <Image.ToolTip>
+                        <TextBlock
+                            Width="150"
+                            Text="{x:Static p:Resources.RegistrationToolTip}"
+                            TextWrapping="Wrap" />
+                    </Image.ToolTip>
+                </Image>
                 <Label
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"

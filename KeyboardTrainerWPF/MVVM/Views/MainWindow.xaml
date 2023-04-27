@@ -86,13 +86,6 @@
                     Style="{StaticResource MenuButtonStyle}" />
 
                 <RadioButton
-                    x:Name="TrainingRadioButton"
-                    Command="{Binding TrainViewCommand}"
-                    Content="{x:Static p:Resources.Training}"
-                    Foreground="{Binding TextColor}"
-                    Style="{StaticResource MenuButtonStyle}" />
-
-                <RadioButton
                     x:Name="RecordsTableRadioButton"
                     Command="{Binding RecordsTableViewCommand}"
                     Content="{x:Static p:Resources.RecorsTable}"
