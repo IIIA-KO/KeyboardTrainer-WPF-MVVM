@@ -79,6 +79,15 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login was successful. Please save your settings.
+        /// </summary>
+        public static string AccountLoginSuccess {
+            get {
+                return ResourceManager.GetString("AccountLoginSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account hasn&apos;t been found.
         /// </summary>
         public static string AccountNotFound {
@@ -88,11 +97,20 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to you have successfuly quit your account.
+        ///   Looks up a localized string similar to you have successfuly quit your account. Please save your settings.
         /// </summary>
         public static string AccountQuitMessage {
             get {
                 return ResourceManager.GetString("AccountQuitMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration was successful. Please save your settings.
+        /// </summary>
+        public static string AccountSigninSuccess {
+            get {
+                return ResourceManager.GetString("AccountSigninSuccess", resourceCulture);
             }
         }
         
@@ -219,6 +237,51 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         public static string Quit {
             get {
                 return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Records.
+        /// </summary>
+        public static string Records {
+            get {
+                return ResourceManager.GetString("Records", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string RecordsDuration {
+            get {
+                return ResourceManager.GetString("RecordsDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fails.
+        /// </summary>
+        public static string RecordsFails {
+            get {
+                return ResourceManager.GetString("RecordsFails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string RecordsLogin {
+            get {
+                return ResourceManager.GetString("RecordsLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed (chars/min).
+        /// </summary>
+        public static string RecordsSpeed {
+            get {
+                return ResourceManager.GetString("RecordsSpeed", resourceCulture);
             }
         }
         

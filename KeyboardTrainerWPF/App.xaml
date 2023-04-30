@@ -13,6 +13,8 @@
                 <ResourceDictionary Source="Styles/SettingsComboBox.xaml" />
                 <ResourceDictionary Source="Styles/CheckBoxTheme.xaml" />
                 <ResourceDictionary Source="Styles/SettingsGroupBox.xaml" />
+                <ResourceDictionary Source="Styles/TextBox.xaml" />
+                <ResourceDictionary Source="Styles/DataGrid.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

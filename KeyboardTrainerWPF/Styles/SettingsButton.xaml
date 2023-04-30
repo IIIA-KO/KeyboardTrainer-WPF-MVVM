@@ -10,11 +10,28 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="FontFamily" Value="/Fonts/Nunito_Sans/#NunitoSans" />
             <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10">
+                            <ContentPresenter
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
         </Style.Setters>
 
         <Style.Triggers>
-            <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="#8EABAF" />
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#607D8B" />
             </Trigger>
 
             <Trigger Property="IsEnabled" Value="False">

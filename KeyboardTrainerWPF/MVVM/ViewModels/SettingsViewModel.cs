@@ -22,16 +22,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private ComboBox _textLanguageComboBox;
         private CheckBox _checkBox;
         private readonly IUserService users;
-        private readonly IScoreService scores;
-        private readonly ITextService texts;
         #endregion
 
         #region Public Constuctors
-        public SettingsViewModel(IUserService userService, IScoreService scoreService, ITextService textService)
+        public SettingsViewModel(IUserService userService)
         {
             users = userService;
-            scores = scoreService;
-            texts = textService;
 
             UserName = Properties.Settings.Default.UserName;
             Complexity = Properties.Settings.Default.Complexity;
@@ -86,11 +82,16 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
         public SettingsViewModel(ComboBox languageComboBox, ComboBox textLanguageComboBox, CheckBox checkBox)
         {
-            var serviceProvider = ((App)Application.Current).Services;
-            if (serviceProvider == null) throw new NullReferenceException(nameof(serviceProvider));
-            users = serviceProvider.GetService<IUserService>();
-            scores = serviceProvider.GetService<IScoreService>();
-            texts = serviceProvider.GetService<ITextService>();
+            try
+            {
+                var serviceProvider = ((App)Application.Current).Services;
+                if (serviceProvider == null) throw new NullReferenceException(nameof(serviceProvider));
+                users = serviceProvider.GetService<IUserService>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             UserName = Properties.Settings.Default.UserName;
             Complexity = Properties.Settings.Default.Complexity;
@@ -292,9 +293,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             try
             {
-                users.Add(new User { Login = login, Password = password});
+                users.Add(new User { Login = login, Password = password });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

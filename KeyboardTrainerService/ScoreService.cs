@@ -44,5 +44,10 @@ namespace KeyboardTrainerService
         {
             return this.context.Scores.Find(id);
         }
+
+        public List<Score> Search(Func<Score, bool> filter, bool loadRalatedData = false)
+            => (loadRalatedData) ? 
+            this.context.Scores.Include(s => s.User).Include(s => s.Text).Where(filter).ToList() 
+            : this.context.Scores.Where(filter).ToList();
     }
 }

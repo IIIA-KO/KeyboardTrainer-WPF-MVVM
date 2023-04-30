@@ -123,11 +123,17 @@
   <data name="AccountExits" xml:space="preserve">
     <value>already exists</value>
   </data>
+  <data name="AccountLoginSuccess" xml:space="preserve">
+    <value>Login was successful. Please save your settings</value>
+  </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>Account hasn't been found</value>
   </data>
   <data name="AccountQuitMessage" xml:space="preserve">
-    <value>you have successfuly quit your account</value>
+    <value>you have successfuly quit your account. Please save your settings</value>
+  </data>
+  <data name="AccountSigninSuccess" xml:space="preserve">
+    <value>Registration was successful. Please save your settings</value>
   </data>
   <data name="Appereance" xml:space="preserve">
     <value>Appereance</value>
@@ -170,6 +176,21 @@
   </data>
   <data name="Quit" xml:space="preserve">
     <value>Quit</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="RecordsDuration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="RecordsFails" xml:space="preserve">
+    <value>Fails</value>
+  </data>
+  <data name="RecordsLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="RecordsSpeed" xml:space="preserve">
+    <value>Speed (chars/min)</value>
   </data>
   <data name="RecorsTable" xml:space="preserve">
     <value>Records Table</value>

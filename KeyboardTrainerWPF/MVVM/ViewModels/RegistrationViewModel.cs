@@ -55,6 +55,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 try
                 {
                     _action?.Invoke(_login?.Text ?? "", _password?.Password ?? "");
+
+                    MessageBox.Show(
+                        ActionName == Properties.Languages.Resources.RegLogIn ? 
+                        Properties.Languages.Resources.AccountLoginSuccess :
+                        Properties.Languages.Resources.AccountSigninSuccess
+                        , "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     window.Close();
                 }
                 catch (Exception ex)
@@ -70,6 +76,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 && _password.Password.Any(char.IsUpper)
                 && _password.Password.Any(char.IsDigit)
                 && _login.Text.Length >= 4
+                && _login.Text.Length <= 16
                 && _login.Text != "Guest";
         }
         #endregion

@@ -10,5 +10,8 @@
         public int Fails { get; set; }
         public double Speed { get; set; }
         public double Complexity { get; set; }
+
+        public override string ToString()
+        => $"{Id}|{Complexity}|{Speed}|{Fails}|{Duration}";
     }
 }

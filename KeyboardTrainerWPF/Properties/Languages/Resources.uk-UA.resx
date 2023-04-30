@@ -123,11 +123,17 @@
   <data name="AccountExits" xml:space="preserve">
     <value>уже існує</value>
   </data>
+  <data name="AccountLoginSuccess" xml:space="preserve">
+    <value>Вхід було виконано успішно. Будь ласка, збережіть налаштування</value>
+  </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>Обліковий запис не було знайдено</value>
   </data>
   <data name="AccountQuitMessage" xml:space="preserve">
-    <value>ви успішоно вийшли зі свого облікового запису</value>
+    <value>ви успішоно вийшли зі свого облікового запису. Будь ласка, збережіть налаштування</value>
+  </data>
+  <data name="AccountSigninSuccess" xml:space="preserve">
+    <value>Реєстрація була виконана успішно. Будь ласка, збережіть налаштування</value>
   </data>
   <data name="Appereance" xml:space="preserve">
     <value>Зовнішній вигляд</value>
@@ -170,6 +176,21 @@
   </data>
   <data name="Quit" xml:space="preserve">
     <value>Вихід</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>Рекорди</value>
+  </data>
+  <data name="RecordsDuration" xml:space="preserve">
+    <value>Тривалість</value>
+  </data>
+  <data name="RecordsFails" xml:space="preserve">
+    <value>Помилки</value>
+  </data>
+  <data name="RecordsLogin" xml:space="preserve">
+    <value>Логін</value>
+  </data>
+  <data name="RecordsSpeed" xml:space="preserve">
+    <value>Швидкість (знак/хв)</value>
   </data>
   <data name="RecorsTable" xml:space="preserve">
     <value>Таблиця рекордів</value>
