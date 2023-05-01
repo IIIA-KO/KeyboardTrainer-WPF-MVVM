@@ -62,8 +62,9 @@
                         Binding="{Binding Complexity}"
                         Header="{x:Static p:Resources.Complexity}" />
                     <DataGridTextColumn
-                        Width="*"
+                        Width="auto"
                         Binding="{Binding Speed}"
+                        CanUserResize="False"
                         Header="{x:Static p:Resources.RecordsSpeed}" />
                     <DataGridTextColumn
                         Width="*"
@@ -73,6 +74,10 @@
                         Width="*"
                         Binding="{Binding Duration, StringFormat=hh\\:mm\\:ss}"
                         Header="{x:Static p:Resources.RecordsDuration}" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Accuracy, StringFormat=F2}"
+                        Header="{x:Static p:Resources.RecordsAccuracy}" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

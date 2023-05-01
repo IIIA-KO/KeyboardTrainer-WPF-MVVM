@@ -8,6 +8,8 @@ using System.Threading;
 using System.Windows;
 using Text = KeyboardTrainerModel.Text;
 using System.Collections.Generic;
+using KeyboardTrainerModel;
+using System.Windows.Controls;
 
 namespace KeyboardTrainerWPF
 {

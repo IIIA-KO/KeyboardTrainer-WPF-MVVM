@@ -224,7 +224,17 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
                 if (User != "Guest")
                 {
-                    var score = new Score { User = _currentUser, Text = _filteredText, Complexity = _complexity, Duration = duration, Fails = this.Fails, SessionBeginning = _startTime, Speed = this.Speed };
+                    var score = new Score 
+                    {
+                        User = _currentUser,
+                        Text = _filteredText,
+                        Complexity = _complexity,
+                        Duration = duration,
+                        Fails = this.Fails,
+                        SessionBeginning = _startTime,
+                        Speed = this.Speed,
+                        Accuracy = Math.Round((1 - ((double)this.Fails / (double)_filteredText.TextContent.Length)) * 100, 2)
+                    };
                     scores.Add(score);
                 }
                 _progressBar.Value = 0;

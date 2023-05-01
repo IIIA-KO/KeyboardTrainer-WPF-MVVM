@@ -250,6 +250,15 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accuracy (%).
+        /// </summary>
+        public static string RecordsAccuracy {
+            get {
+                return ResourceManager.GetString("RecordsAccuracy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duration.
         /// </summary>
         public static string RecordsDuration {

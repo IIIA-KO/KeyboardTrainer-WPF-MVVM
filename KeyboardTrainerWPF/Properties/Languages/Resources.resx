@@ -180,6 +180,9 @@
   <data name="Records" xml:space="preserve">
     <value>Records</value>
   </data>
+  <data name="RecordsAccuracy" xml:space="preserve">
+    <value>Accuracy (%)</value>
+  </data>
   <data name="RecordsDuration" xml:space="preserve">
     <value>Duration</value>
   </data>

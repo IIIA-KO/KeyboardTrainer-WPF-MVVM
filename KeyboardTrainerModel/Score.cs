@@ -10,8 +10,9 @@
         public int Fails { get; set; }
         public double Speed { get; set; }
         public double Complexity { get; set; }
+        public double Accuracy { get; set; }
 
         public override string ToString()
-        => $"{Id}|{User.Login}|{Complexity}|{Speed}|{Fails}|{Duration.ToString(@"hh\:mm\:ss")}";
+        => $"{Id}|{User.Login}|{Complexity}|{Speed}|{Fails}|{Duration.ToString(@"hh\:mm\:ss")}|{Accuracy:F2}";
     }
 }
