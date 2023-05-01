@@ -1,19 +1,17 @@
-﻿using KeyboardTrainerWPF.Core;
+﻿using KeyboardTrainerModel;
+using KeyboardTrainerModel.Interfaces;
+using KeyboardTrainerWPF.Core;
 using KeyboardTrainerWPF.MVVM.Models.KeyClasses;
-using KeyboardTrainerWPF.MVVM.Models;
+using KeyboardTrainerWPF.Properties.Languages;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Numerics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using KeyboardTrainerWPF.Properties.Languages;
-using KeyboardTrainerModel.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using KeyboardTrainerModel;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
@@ -182,6 +180,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     case Key.LeftAlt:
                     case Key.RightAlt:
                     case Key.Back:
+                    case Key.Tab:
+                    case Key.Enter:
                         return;
 
                     case Key.LeftShift:
@@ -193,12 +193,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     case Key.Space:
                         Type(' ');
                         return;
-                    case Key.Tab:
-                        Type('\t');
-                        return;
-                    case Key.Enter:
-                        Type('\n');
-                        return;
+
                     default:
                         Type(char.Parse(_keyboardButtons[key].Content.Text as string ?? " "));
                         return;
@@ -229,7 +224,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
                 if (User != "Guest")
                 {
-                    var score = new Score { User = _currentUser, Text = _filteredText, Complexity = _complexity, Duration = duration, Fails = Fails, SessionBeginning = _startTime, Speed = Speed };
+                    var score = new Score { User = _currentUser, Text = _filteredText, Complexity = _complexity, Duration = duration, Fails = this.Fails, SessionBeginning = _startTime, Speed = this.Speed };
                     scores.Add(score);
                 }
                 _progressBar.Value = 0;
@@ -280,9 +275,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             StartOrStop = $"{Resources.Start}";
         }
         private void SpeedTracking(object? sender, EventArgs e) =>
-            Speed = 60 * Math.Round(_text.Length / (DateTime.Now - _startTime).TotalSeconds);
+            Speed = 60 * Math.Round((_text.Length / (DateTime.Now - _startTime).TotalSeconds), 1);
         #endregion
-
 
         #region InterfaceImplementation
         public Brush TextColor { get; set; }

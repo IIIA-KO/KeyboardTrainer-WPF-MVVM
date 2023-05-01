@@ -24,7 +24,7 @@ namespace KeyboardTrainerWPF.MVVM.Views
         {
             try
             {
-                KeyboardButtons[Key.Oem3] = new SpecialCharKey("`", "~", 0, 0, 2, Key.Oem3);
+                KeyboardButtons[Key.Oem5] = new SpecialCharKey("\\", "|", 1, 27, 3, Key.Oem5);
                 KeyboardButtons[Key.D1] = new DigitKey("1", "!", 0, 2, Key.D1);
                 KeyboardButtons[Key.D5] = new DigitKey("5", "%", 0, 10, Key.D5);
                 KeyboardButtons[Key.D8] = new DigitKey("8", "*", 0, 16, Key.D8);
@@ -89,7 +89,7 @@ namespace KeyboardTrainerWPF.MVVM.Views
                         KeyboardButtons[Key.OemComma] = new LetterKey("Б", 3, 19, Key.OemComma);
                         KeyboardButtons[Key.OemPeriod] = new LetterKey("Ю", 3, 21, Key.OemPeriod);
                         KeyboardButtons[Key.OemQuestion] = new SpecialCharKey(",", ".", 3, 23, 2, Key.OemQuestion);
-                        KeyboardButtons[Key.Oem5] = new SpecialCharKey("\\", "'", 1, 27, 3, Key.Oem5);
+                        KeyboardButtons[Key.Oem3] = new SpecialCharKey("'", "~", 0, 0, 2, Key.Oem3);
                         break;
 
                     default:
@@ -133,7 +133,7 @@ namespace KeyboardTrainerWPF.MVVM.Views
                         KeyboardButtons[Key.OemComma] = new SpecialCharKey(",", "<", 3, 19, 2, Key.OemComma);
                         KeyboardButtons[Key.OemPeriod] = new SpecialCharKey(".", ">", 3, 21, 2, Key.OemPeriod);
                         KeyboardButtons[Key.OemQuestion] = new SpecialCharKey("/", "?", 3, 23, 2, Key.OemQuestion);
-                        KeyboardButtons[Key.Oem5] = new SpecialCharKey("\\", "|", 1, 27, 3, Key.Oem5);
+                        KeyboardButtons[Key.Oem3] = new SpecialCharKey("`", "~", 0, 0, 2, Key.Oem3);
                         break;
                 }
 

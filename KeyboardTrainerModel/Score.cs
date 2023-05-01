@@ -12,6 +12,6 @@
         public double Complexity { get; set; }
 
         public override string ToString()
-        => $"{Id}|{Complexity}|{Speed}|{Fails}|{Duration}";
+        => $"{Id}|{User.Login}|{Complexity}|{Speed}|{Fails}|{Duration.ToString(@"hh\:mm\:ss")}";
     }
 }

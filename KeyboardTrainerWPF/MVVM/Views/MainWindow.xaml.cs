@@ -36,8 +36,8 @@ namespace KeyboardTrainerWPF
                 if (isMaximazed)
                 {
                     this.WindowState = WindowState.Normal;
-                    //this.Width = 1280;
-                    //this.Height = 720;
+                    this.Width = 1280;
+                    this.Height = 720;
                     isMaximazed = false;
                 }
                 else
