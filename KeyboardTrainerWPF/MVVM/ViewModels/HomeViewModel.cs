@@ -216,7 +216,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             if (_progressBar.Value == _progressBar.Maximum)
             {
-                Stop();
                 TimeSpan duration = _startTime - DateTime.Now;
                 MessageBox.Show(
                     $"{Properties.Languages.Resources.Fails}: {Fails}\n{Properties.Languages.Resources.Speed}: {Speed}", "Game over!",
@@ -237,9 +236,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     };
                     scores.Add(score);
                 }
-                _progressBar.Value = 0;
-                Speed = 0;
-                Fails = 0;
+                Stop();
             }
         }
         #endregion
@@ -279,6 +276,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private void Stop()
         {
             _speedTracker.Stop();
+            _progressBar.Value = 0;
+            Speed = 0;
+            Fails = 0;
             _textBox.Text = string.Empty;
             _textBox.Foreground = Brushes.Black;
             IsStarted = false;
