@@ -264,6 +264,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             {
                 Fails++;
                 _textBox.Foreground = Brushes.Red;
+                System.Media.SystemSounds.Exclamation.Play();
                 return;
             }
 
