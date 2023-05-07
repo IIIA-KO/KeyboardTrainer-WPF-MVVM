@@ -43,7 +43,7 @@
 
             <TextBlock
                 Grid.Row="0"
-                Grid.Column="0"
+                Grid.Column="0" 
                 Grid.ColumnSpan="2"
                 Margin="90,20,0,0"
                 HorizontalAlignment="Left"
