@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
@@ -34,7 +35,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             SearchByAnyField = "";
             ScoresList = new ObservableCollection<Score>(scores.Search(s => s != null, true));
             ScoresCollection = CollectionViewSource.GetDefaultView(ScoresList);
-            ScoresCollection.Filter = PredicateByAnyField; 
+            ScoresCollection.Filter = PredicateByAnyField;
+
+            RemoveScoreCommand = new RelayCommand(ExecuteRemoveScore, CanExecuteRemoveScore);
 
             SetAppereance(Properties.Settings.Default.DarkTheme);
         }
@@ -46,6 +49,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             ScoresList = new ObservableCollection<Score>(scores.Search(s => s != null, true));
             ScoresCollection = CollectionViewSource.GetDefaultView(ScoresList);
             ScoresCollection.Filter = PredicateByAnyField;
+
+            RemoveScoreCommand = new RelayCommand(ExecuteRemoveScore, CanExecuteRemoveScore);
 
             SetAppereance(Properties.Settings.Default.DarkTheme);
         }
@@ -60,7 +65,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         public static readonly DependencyProperty ScoresCollectionProperty =
             DependencyProperty.Register("ScoresCollection", typeof(ICollectionView), typeof(RecordsTableViewModel), new PropertyMetadata(null));
         private readonly ObservableCollection<Score> ScoresList;
-
 
 
         public string SearchByAnyField
@@ -82,6 +86,40 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             if (obj is Score score)
                 return score.ToString().Contains(SearchByAnyField);
+            return false;
+        }
+        #endregion
+
+        #region Commands
+        public ICommand RemoveScoreCommand { get; }
+        private void ExecuteRemoveScore(object? obj)
+        {
+            Score score = obj as Score;
+            if (score != null)
+            {
+                try
+                {
+                    if (MessageBox.Show(Properties.Languages.Resources.RecordsDeleteQuestion, "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        ScoresList.Remove(score);
+                        scores.Delete(s => s.Id == score.Id, true);
+                    }
+                    else return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Unexpected Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+        }
+        private bool CanExecuteRemoveScore(object? obj)
+        {
+            Score score = obj as Score;
+            if (score != null)
+            {
+                return ScoresList.Count > 0 && score.User.Login == Properties.Settings.Default.UserName;
+            }
             return false;
         }
         #endregion

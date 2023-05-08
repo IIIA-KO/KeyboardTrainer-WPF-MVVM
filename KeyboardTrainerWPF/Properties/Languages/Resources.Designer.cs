@@ -259,6 +259,24 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can only delete records created on your login.
+        /// </summary>
+        public static string RecordsDeleteMessage {
+            get {
+                return ResourceManager.GetString("RecordsDeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this record from the database?.
+        /// </summary>
+        public static string RecordsDeleteQuestion {
+            get {
+                return ResourceManager.GetString("RecordsDeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duration.
         /// </summary>
         public static string RecordsDuration {

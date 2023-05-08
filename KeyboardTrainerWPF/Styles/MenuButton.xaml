@@ -7,10 +7,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Grid
+                        <Border
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Background="{TemplateBinding Background}">
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="15">
                             <TextBlock
                                 Height="50"
                                 Margin="0,15,0,0"
@@ -19,7 +20,7 @@
                                 FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
                                 FontSize="28"
                                 Text="{TemplateBinding Property=Content}" />
-                        </Grid>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

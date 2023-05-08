@@ -183,6 +183,12 @@
   <data name="RecordsAccuracy" xml:space="preserve">
     <value>Accuracy (%)</value>
   </data>
+  <data name="RecordsDeleteMessage" xml:space="preserve">
+    <value>You can only delete records created on your login</value>
+  </data>
+  <data name="RecordsDeleteQuestion" xml:space="preserve">
+    <value>Do you really want to delete this record from the database?</value>
+  </data>
   <data name="RecordsDuration" xml:space="preserve">
     <value>Duration</value>
   </data>

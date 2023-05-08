@@ -18,6 +18,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBox
                 Name="textBoxSearch"
@@ -35,10 +36,27 @@
                 FontWeight="SemiBold"
                 Foreground="{Binding TextColor}"
                 Text="{x:Static p:Resources.Records}" />
+
+            <Button
+                x:Name="ButtonClose"
+                Grid.Column="3"
+                Command="{Binding RemoveScoreCommand}"
+                Style="{StaticResource DeleteScoreStyle}">
+                <Button.CommandParameter>
+                    <Binding ElementName="scoresDataGrid" Path="SelectedItem" />
+                </Button.CommandParameter>
+                <Button.ToolTip>
+                    <TextBlock
+                        Width="100"
+                        Text="{x:Static p:Resources.RecordsDeleteMessage}"
+                        TextWrapping="Wrap" />
+                </Button.ToolTip>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="1">
             <DataGrid
+                x:Name="scoresDataGrid"
                 AutoGenerateColumns="False"
                 CellStyle="{DynamicResource DataGridCellStyle}"
                 ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"

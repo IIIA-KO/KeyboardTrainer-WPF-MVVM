@@ -183,6 +183,12 @@
   <data name="RecordsAccuracy" xml:space="preserve">
     <value>Точність (%)</value>
   </data>
+  <data name="RecordsDeleteMessage" xml:space="preserve">
+    <value>Ви можете видаляти лише ті записи, що створені під вашим логіном</value>
+  </data>
+  <data name="RecordsDeleteQuestion" xml:space="preserve">
+    <value>Ви дійсно хочете видалити цей запис із бази даних?</value>
+  </data>
   <data name="RecordsDuration" xml:space="preserve">
     <value>Тривалість</value>
   </data>

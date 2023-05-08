@@ -19,6 +19,9 @@
     <None Remove="Images\shutdown_def.png" />
     <None Remove="Images\shutdown_mo.png" />
     <None Remove="Images\square %281%29.png" />
+    <None Remove="Images\trash-can-solid-gray.png" />
+    <None Remove="Images\trash-can-solid-red.png" />
+    <None Remove="Images\trash-can-solid2.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +57,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\square (1).png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\trash-can-solid-gray.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\trash-can-solid-red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
