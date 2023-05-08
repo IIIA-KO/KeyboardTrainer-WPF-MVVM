@@ -37,21 +37,22 @@
                 Foreground="{Binding TextColor}"
                 Text="{x:Static p:Resources.Records}" />
 
-            <Button
-                x:Name="ButtonClose"
-                Grid.Column="3"
-                Command="{Binding RemoveScoreCommand}"
-                Style="{StaticResource DeleteScoreStyle}">
-                <Button.CommandParameter>
-                    <Binding ElementName="scoresDataGrid" Path="SelectedItem" />
-                </Button.CommandParameter>
-                <Button.ToolTip>
+            <Border Grid.Column="3">
+                <Button
+                    x:Name="ButtonClose"
+                    Command="{Binding RemoveScoreCommand}"
+                    Style="{StaticResource DeleteScoreStyle}">
+                    <Button.CommandParameter>
+                        <Binding ElementName="scoresDataGrid" Path="SelectedItem" />
+                    </Button.CommandParameter>
+                </Button>
+                <Border.ToolTip>
                     <TextBlock
                         Width="100"
                         Text="{x:Static p:Resources.RecordsDeleteMessage}"
                         TextWrapping="Wrap" />
-                </Button.ToolTip>
-            </Button>
+                </Border.ToolTip>
+            </Border>
         </Grid>
 
         <Grid Grid.Row="1">
