@@ -205,7 +205,7 @@
     <value>Records Table</value>
   </data>
   <data name="RegistrationToolTip" xml:space="preserve">
-    <value>The password must be at least 8 characters long and contain at least one capital letter and a number. Login must be at least 4 characters long and cannot be the word "Guest"</value>
+    <value>The password must be at least 8 characters long and contain at least one capital letter and a number. The login must be at least 4 characters long and no more than 16 characters and cannot be the word "Guest"</value>
   </data>
   <data name="RegLogIn" xml:space="preserve">
     <value>Login</value>

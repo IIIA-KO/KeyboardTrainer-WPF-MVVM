@@ -322,7 +322,7 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password must be at least 8 characters long and contain at least one capital letter and a number. Login must be at least 4 characters long and cannot be the word &quot;Guest&quot;.
+        ///   Looks up a localized string similar to The password must be at least 8 characters long and contain at least one capital letter and a number. The login must be at least 4 characters long and no more than 16 characters and cannot be the word &quot;Guest&quot;.
         /// </summary>
         public static string RegistrationToolTip {
             get {

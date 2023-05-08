@@ -55,14 +55,7 @@
                 <Image
                     Width="Auto"
                     Height="130"
-                    Source="/Images/keyboardIcon/keyboard-1.png">
-                    <Image.ToolTip>
-                        <TextBlock
-                            Width="150"
-                            Text="{x:Static p:Resources.RegistrationToolTip}"
-                            TextWrapping="Wrap" />
-                    </Image.ToolTip>
-                </Image>
+                    Source="/Images/keyboardIcon/keyboard-1.png" />
                 <Label
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
@@ -96,18 +89,27 @@
                     Margin="0,5,0,0"
                     VerticalContentAlignment="Center"
                     FontSize="18" />
-                <Button
-                    Width="300"
-                    Height="40"
-                    Margin="0,20,0,0"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Command="{Binding OKCommand, Mode=OneWay}"
-                    CommandParameter="{Binding ElementName=window}"
-                    Content="{x:Static p:Resources.Submit}"
-                    FontSize="24"
-                    Foreground="{Binding TextColor}"
-                    Style="{StaticResource SettingsButtonStyle}" />
+
+                <Border>
+                    <Button
+                        Width="300"
+                        Height="40"
+                        Margin="0,20,0,0"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Command="{Binding OKCommand, Mode=OneWay}"
+                        CommandParameter="{Binding ElementName=window}"
+                        Content="{x:Static p:Resources.Submit}"
+                        FontSize="24"
+                        Foreground="{Binding TextColor}"
+                        Style="{StaticResource SettingsButtonStyle}" />
+                    <Border.ToolTip>
+                        <TextBlock
+                            Width="150"
+                            Text="{x:Static p:Resources.RegistrationToolTip}"
+                            TextWrapping="Wrap" />
+                    </Border.ToolTip>
+                </Border>
             </StackPanel>
         </Grid>
     </Border>

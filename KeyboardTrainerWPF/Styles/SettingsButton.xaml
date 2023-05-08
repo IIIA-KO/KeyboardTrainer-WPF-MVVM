@@ -35,7 +35,7 @@
             </Trigger>
 
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="Gray" />
+                <Setter Property="Background" Value="#546E7A" />
             </Trigger>
 
         </Style.Triggers>

@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -72,7 +71,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             LoginCommand = new RelayCommand(ExecuteLogIn);
             SignUpCommand = new RelayCommand(ExecuteSignUp);
-            LogOutCommand = new RelayCommand(ExecuteLogOut);
+            LogOutCommand = new RelayCommand(ExecuteLogOut, CanExecuteLogOut);
             SaveCommand = new RelayCommand(Execute_Save);
             LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
             TextLanguageBoxSelectionChanged = new RelayCommand(ExecuteTextLanguageChanged);
@@ -137,7 +136,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
             LoginCommand = new RelayCommand(ExecuteLogIn);
             SignUpCommand = new RelayCommand(ExecuteSignUp);
-            LogOutCommand = new RelayCommand(ExecuteLogOut);
+            LogOutCommand = new RelayCommand(ExecuteLogOut, CanExecuteLogOut);
             SaveCommand = new RelayCommand(Execute_Save);
             LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
             TextLanguageBoxSelectionChanged = new RelayCommand(ExecuteTextLanguageChanged);
@@ -215,13 +214,11 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         public ICommand LogOutCommand { get; }
         private void ExecuteLogOut(object? obj)
         {
-            if (Properties.Settings.Default.UserName != "Guest")
-            {
-                MessageBox.Show($"{Properties.Settings.Default.UserName}, {Resources.AccountQuitMessage}", $"{Resources.Quit}",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                Properties.Settings.Default.UserName = "Guest";
-            }
+            MessageBox.Show($"{Properties.Settings.Default.UserName}, {Resources.AccountQuitMessage}", $"{Resources.Quit}",
+                MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            Properties.Settings.Default.UserName = "Guest";
         }
+        private bool CanExecuteLogOut(object? obj) => Properties.Settings.Default.UserName.ToLower() != "guest";
 
         public ICommand SaveCommand { get; }
         private void Execute_Save(object? obj)

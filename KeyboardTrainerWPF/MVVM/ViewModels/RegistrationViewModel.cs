@@ -77,7 +77,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 && _password.Password.Any(char.IsDigit)
                 && _login.Text.Length >= 4
                 && _login.Text.Length <= 16
-                && _login.Text != "Guest";
+                && _login.Text.ToLower() != "guest";
         }
         #endregion
 
