@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:KeyboardTrainerWPF.Properties.Languages"
-    xmlns:viewModel="clr-namespace:KeyboardTrainerWPF.MVVM.ViewModels"
     Title="KeyboardTrainer"
     Width="1280"
     Height="720"

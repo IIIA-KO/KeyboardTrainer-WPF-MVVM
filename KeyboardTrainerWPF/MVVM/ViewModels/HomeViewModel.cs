@@ -278,6 +278,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
         private void Stop()
         {
+            _speedTracker.Stop();
             _progressBar.Value = 0;
             Speed = 0;
             Fails = 0;
