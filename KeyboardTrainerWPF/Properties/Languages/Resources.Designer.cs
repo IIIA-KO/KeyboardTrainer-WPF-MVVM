@@ -169,6 +169,15 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Звук помилки.
+        /// </summary>
+        public static string ErrorSound {
+            get {
+                return ResourceManager.GetString("ErrorSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fails:.
         /// </summary>
         public static string Fails {

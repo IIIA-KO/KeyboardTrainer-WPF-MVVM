@@ -16,6 +16,7 @@
     MouseDown="Window_MouseDown"
     PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
     ResizeMode="CanResizeWithGrip"
+    PreviewKeyDown="Window_PreviewKeyDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

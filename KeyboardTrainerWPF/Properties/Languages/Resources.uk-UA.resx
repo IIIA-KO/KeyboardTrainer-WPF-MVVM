@@ -153,6 +153,9 @@
   <data name="EnglishLang" xml:space="preserve">
     <value>Англійська</value>
   </data>
+  <data name="ErrorSound" xml:space="preserve">
+    <value>Error Sound</value>
+  </data>
   <data name="Fails" xml:space="preserve">
     <value>Помилки:</value>
   </data>

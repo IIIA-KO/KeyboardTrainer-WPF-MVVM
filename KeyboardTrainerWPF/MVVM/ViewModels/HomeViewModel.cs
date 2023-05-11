@@ -25,12 +25,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private Dictionary<Key, KeyButton> _keyboardButtons;
         private TextBox _textBox;
         private ProgressBar _progressBar;
+
         private string _text;
         private DispatcherTimer _speedTracker = new() { Interval = TimeSpan.FromMilliseconds(1000) };
         private DateTime _startTime;
-        public double _complexity = Properties.Settings.Default.Complexity;
-        private Text _filteredText;
         private User _currentUser;
+        private Text _filteredText;
+        private double _complexity;
         #endregion
 
         #region Public Constructors
@@ -41,13 +42,10 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             texts = textService;
 
             _keyboardButtons = new Dictionary<Key, KeyButton>();
-            StartCommand = new RelayCommand(ExecuteStart);
-            KeyDownCommand = new RelayCommand(ExecuteKeyDown, CanExecuteKeys);
-            KeyUpCommand = new RelayCommand(ExecuteKeyUp, CanExecuteKeys);
-            ProgressbarValueChangedCommand = new RelayCommand(ExecuteProgressbarValueChanged);
+            _textBox = new TextBox();
+            _progressBar = new ProgressBar();
 
-            _text = "";
-            SetAppereance(Properties.Settings.Default.DarkTheme);
+            Initialize();
         }
 
         public HomeViewModel(Dictionary<Key, KeyButton> keyboard, TextBox textBox, ProgressBar bar)
@@ -68,20 +66,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             _keyboardButtons = keyboard;
             _textBox = textBox;
             _progressBar = bar;
-            _speedTracker.Tick += SpeedTracking;
-            if (User != "Guest")
-            {
-                _currentUser = users.GetUserByLogin(User);
-            }
 
-            StartCommand = new RelayCommand(ExecuteStart);
-            KeyDownCommand = new RelayCommand(ExecuteKeyDown, CanExecuteKeys);
-            KeyUpCommand = new RelayCommand(ExecuteKeyUp, CanExecuteKeys);
-            ProgressbarValueChangedCommand = new RelayCommand(ExecuteProgressbarValueChanged);
-
-            _text = "";
-
-            SetAppereance(Properties.Settings.Default.DarkTheme);
+            Initialize();
         }
         #endregion
 
@@ -128,7 +114,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #endregion
 
         #region Public Commands
-        public ICommand StartCommand { get; }
+        public ICommand StartCommand { get; private set; }
         private void ExecuteStart(object? obj)
         {
             if (!IsStarted)
@@ -138,6 +124,18 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 Fails = 0;
                 Speed = 0.0;
                 _text = string.Empty;
+
+                //Заготований текс для демонстрації на захисті курсової роботи
+                //switch (Properties.Settings.Default.TextLanguageCode)
+                //{
+                //    case "uk-UA":
+                //        _filteredText = texts.GetTextById(32);
+                //        break;
+
+                //    default:
+                //        _filteredText = texts.GetTextById(31);
+                //        break;
+                //}
 
                 try
                 {
@@ -163,7 +161,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             else Stop();
         }
 
-        public ICommand KeyDownCommand { get; }
+        public ICommand KeyDownCommand { get; private set; }
         private void ExecuteKeyDown(object? obj)
         {
             if (obj is KeyEventArgs e && _keyboardButtons.ContainsKey(e.Key))
@@ -195,12 +193,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                         return;
 
                     default:
-                        Type(char.Parse(_keyboardButtons[key].Content.Text as string ?? " "));
+                        Type(char.Parse(_keyboardButtons[key].Content.Text));
                         return;
                 }
             }
         }
-        public ICommand KeyUpCommand { get; }
+        public ICommand KeyUpCommand { get; private set; }
         private void ExecuteKeyUp(object? obj)
         {
             if (obj is KeyEventArgs e && _keyboardButtons.ContainsKey(e.Key))
@@ -211,7 +209,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         }
         private bool CanExecuteKeys(object? obj) => IsStarted;
 
-        public ICommand ProgressbarValueChangedCommand { get; }
+        public ICommand ProgressbarValueChangedCommand { get; private set; }
         private void ExecuteProgressbarValueChanged(object? obj)
         {
             if (_progressBar.Value == _progressBar.Maximum)
@@ -225,7 +223,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
                 if (User != "Guest")
                 {
-                    var score = new Score 
+                    var score = new Score
                     {
                         User = _currentUser,
                         Text = _filteredText,
@@ -244,6 +242,26 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #endregion
 
         #region Private Methods
+        private void Initialize()
+        {
+            _text = "";
+            _speedTracker.Tick += SpeedTracking;
+            _startTime = DateTime.Now;
+            if (User != "Guest")
+            {
+                _currentUser = users.GetUserByLogin(User);
+            }
+
+            _complexity = Properties.Settings.Default.Complexity;
+
+            StartCommand = new RelayCommand(ExecuteStart);
+            KeyDownCommand = new RelayCommand(ExecuteKeyDown, CanExecuteKeys);
+            KeyUpCommand = new RelayCommand(ExecuteKeyUp, CanExecuteKeys);
+            ProgressbarValueChangedCommand = new RelayCommand(ExecuteProgressbarValueChanged);
+
+            SetAppereance(Properties.Settings.Default.DarkTheme);
+        }
+
         private void UpdateKeyboard()
         {
             try
@@ -266,7 +284,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             {
                 Fails++;
                 _textBox.Foreground = Brushes.Red;
-                System.Media.SystemSounds.Exclamation.Play();
+
+                if (Properties.Settings.Default.ErrorSound)
+                    System.Media.SystemSounds.Exclamation.Play();
                 return;
             }
 

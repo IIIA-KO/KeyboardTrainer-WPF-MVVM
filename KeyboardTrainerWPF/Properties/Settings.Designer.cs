@@ -82,5 +82,17 @@ namespace KeyboardTrainerWPF.Properties {
                 this["TextLanguageCode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ErrorSound {
+            get {
+                return ((bool)(this["ErrorSound"]));
+            }
+            set {
+                this["ErrorSound"] = value;
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace KeyboardTrainerWPF.MVVM.Views
         public Settings()
         {
             InitializeComponent();
-            DataContext = new SettingsViewModel(comboBoxLanguageSelect, comboBoxTextLanguageSelect, darkThemeCheckBox);
+            DataContext = new SettingsViewModel(comboBoxLanguageSelect, comboBoxTextLanguageSelect, darkThemeCheckBox, soundCheckBox);
         }
     }
 }

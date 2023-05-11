@@ -16,6 +16,29 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private PasswordBox _password;
         #endregion
 
+        #region Public Constructors
+        public RegistrationViewModel()
+        {
+            _login = new TextBox();
+            _password = new PasswordBox();
+
+            OKCommand = new RelayCommand(ExecuteOK, CanExecuteOK);
+            SetAppereance(Properties.Settings.Default.DarkTheme);
+        }
+
+        public RegistrationViewModel(TextBox login, PasswordBox password, Action<string, string> action, string actionName)
+        {
+            _action = action;
+            _login = login;
+            _password = password;
+
+            ActionName = actionName;
+
+            OKCommand = new RelayCommand(ExecuteOK, CanExecuteOK);
+            SetAppereance(Properties.Settings.Default.DarkTheme);
+        }
+        #endregion
+
         #region Dependency Properties
         public string ActionName
         {
@@ -24,26 +47,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         }
         public static readonly DependencyProperty ActionNameProperty =
             DependencyProperty.Register("ActionName", typeof(string), typeof(RegistrationViewModel), new PropertyMetadata(string.Empty));
-        #endregion
-
-        #region Public Constructors
-        public RegistrationViewModel()
-        {
-            OKCommand = new RelayCommand(ExecuteOK, CanExecuteOK);
-            SetAppereance(Properties.Settings.Default.DarkTheme);
-        }
-
-        public RegistrationViewModel(TextBox login, PasswordBox password, Action<string, string> action, string actionName)
-        {
-            _login = login;
-            _password = password;
-            _action = action;
-
-            ActionName = actionName;
-
-            OKCommand = new RelayCommand(ExecuteOK, CanExecuteOK);
-            SetAppereance(Properties.Settings.Default.DarkTheme);
-        }
         #endregion
 
         #region Commands
@@ -57,7 +60,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     _action?.Invoke(_login?.Text ?? "", _password?.Password ?? "");
 
                     MessageBox.Show(
-                        ActionName == Properties.Languages.Resources.RegLogIn ? 
+                        ActionName == Properties.Languages.Resources.RegLogIn ?
                         Properties.Languages.Resources.AccountLoginSuccess :
                         Properties.Languages.Resources.AccountSigninSuccess
                         , "Success", MessageBoxButton.OK, MessageBoxImage.Information);

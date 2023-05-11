@@ -53,5 +53,13 @@ namespace KeyboardTrainerWPF
         {
             this.Close();
         }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

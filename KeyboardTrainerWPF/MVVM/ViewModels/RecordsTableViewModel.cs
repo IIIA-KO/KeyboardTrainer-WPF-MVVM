@@ -32,27 +32,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            SearchByAnyField = "";
-            ScoresList = new ObservableCollection<Score>(scores.Search(s => s != null, true));
-            ScoresCollection = CollectionViewSource.GetDefaultView(ScoresList);
-            ScoresCollection.Filter = PredicateByAnyField;
-
-            RemoveScoreCommand = new RelayCommand(ExecuteRemoveScore, CanExecuteRemoveScore);
-
-            SetAppereance(Properties.Settings.Default.DarkTheme);
+            Initialize();
         }
         public RecordsTableViewModel(IScoreService scoreService)
         {
             scores = scoreService;
 
-            SearchByAnyField = "";
-            ScoresList = new ObservableCollection<Score>(scores.Search(s => s != null, true));
-            ScoresCollection = CollectionViewSource.GetDefaultView(ScoresList);
-            ScoresCollection.Filter = PredicateByAnyField;
-
-            RemoveScoreCommand = new RelayCommand(ExecuteRemoveScore, CanExecuteRemoveScore);
-
-            SetAppereance(Properties.Settings.Default.DarkTheme);
+            Initialize();
         }
         #endregion
 
@@ -64,7 +50,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         }
         public static readonly DependencyProperty ScoresCollectionProperty =
             DependencyProperty.Register("ScoresCollection", typeof(ICollectionView), typeof(RecordsTableViewModel), new PropertyMetadata(null));
-        private readonly ObservableCollection<Score> ScoresList;
+        private ObservableCollection<Score> ScoresList;
 
 
         public string SearchByAnyField
@@ -91,7 +77,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #endregion
 
         #region Commands
-        public ICommand RemoveScoreCommand { get; }
+        public ICommand RemoveScoreCommand { get; private set; }
         private void ExecuteRemoveScore(object? obj)
         {
             Score score = obj as Score;
@@ -121,6 +107,20 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 return ScoresList.Count > 0 && score.User.Login == Properties.Settings.Default.UserName;
             }
             return false;
+        }
+        #endregion
+
+        #region Private Methods
+        private void Initialize()
+        {
+            SearchByAnyField = "";
+            ScoresList = new ObservableCollection<Score>(scores.Search(s => s != null, true));
+            ScoresCollection = CollectionViewSource.GetDefaultView(ScoresList);
+            ScoresCollection.Filter = PredicateByAnyField;
+
+            RemoveScoreCommand = new RelayCommand(ExecuteRemoveScore, CanExecuteRemoveScore);
+
+            SetAppereance(Properties.Settings.Default.DarkTheme);
         }
         #endregion
 

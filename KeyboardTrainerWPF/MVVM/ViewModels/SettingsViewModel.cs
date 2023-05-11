@@ -3,6 +3,7 @@ using KeyboardTrainerModel.Interfaces;
 using KeyboardTrainerWPF.Core;
 using KeyboardTrainerWPF.MVVM.Views;
 using KeyboardTrainerWPF.Properties.Languages;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.ObjectModel;
@@ -19,7 +20,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #region Private Fields
         private ComboBox _languageComboBox;
         private ComboBox _textLanguageComboBox;
-        private CheckBox _checkBox;
+        private CheckBox _themeCheckBox;
+        private CheckBox _soundCheckBox;
         private readonly IUserService users;
         #endregion
 
@@ -28,58 +30,15 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             users = userService;
 
-            UserName = Properties.Settings.Default.UserName;
-            Complexity = Properties.Settings.Default.Complexity;
-            LanguageCode = Properties.Settings.Default.LanguageCode;
-            IsDarkTheme = Properties.Settings.Default.DarkTheme;
-
-            Languages = new ObservableCollection<string>() { "English", "Українська" };
-
             _languageComboBox = new ComboBox();
-            _checkBox = new CheckBox();
+            _textLanguageComboBox = new ComboBox();
+            _themeCheckBox = new CheckBox();
+            _soundCheckBox = new CheckBox();
 
-            switch (Properties.Settings.Default.LanguageCode)
-            {
-                case "uk-UA":
-                    LanguageSelectedIndex = 1;
-                    break;
-
-                default:
-                    LanguageSelectedIndex = 0;
-                    break;
-            }
-            switch (Properties.Settings.Default.TextLanguageCode)
-            {
-                case "uk-UA":
-                    TextLanguageSelectedIndex = 1;
-                    break;
-
-                default:
-                    TextLanguageSelectedIndex = 0;
-                    break;
-            }
-            switch (Properties.Settings.Default.DarkTheme)
-            {
-                case true:
-                    _checkBox.IsChecked = true;
-                    break;
-
-                default:
-                    _checkBox.IsChecked = false;
-                    break;
-            }
-
-            LoginCommand = new RelayCommand(ExecuteLogIn);
-            SignUpCommand = new RelayCommand(ExecuteSignUp);
-            LogOutCommand = new RelayCommand(ExecuteLogOut, CanExecuteLogOut);
-            SaveCommand = new RelayCommand(Execute_Save);
-            LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
-            TextLanguageBoxSelectionChanged = new RelayCommand(ExecuteTextLanguageChanged);
-            ThemeChanged = new RelayCommand(ExecuteThemeChanged);
-            SetAppereance(Properties.Settings.Default.DarkTheme);
+            Initialize();
         }
 
-        public SettingsViewModel(ComboBox languageComboBox, ComboBox textLanguageComboBox, CheckBox checkBox)
+        public SettingsViewModel(ComboBox languageComboBox, ComboBox textLanguageComboBox, CheckBox themeCheckBox, CheckBox soundcCheckBox)
         {
             try
             {
@@ -92,56 +51,12 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            UserName = Properties.Settings.Default.UserName;
-            Complexity = Properties.Settings.Default.Complexity;
-            LanguageCode = Properties.Settings.Default.LanguageCode;
-            IsDarkTheme = Properties.Settings.Default.DarkTheme;
-
-            Languages = new ObservableCollection<string>() { "English", "Українська" };
-
             _languageComboBox = languageComboBox;
             _textLanguageComboBox = textLanguageComboBox;
-            _checkBox = checkBox;
+            _themeCheckBox = themeCheckBox;
+            _soundCheckBox = soundcCheckBox;
 
-            switch (Properties.Settings.Default.LanguageCode)
-            {
-                case "uk-UA":
-                    LanguageSelectedIndex = 1;
-                    break;
-
-                default:
-                    LanguageSelectedIndex = 0;
-                    break;
-            }
-            switch (Properties.Settings.Default.TextLanguageCode)
-            {
-                case "uk-UA":
-                    TextLanguageSelectedIndex = 1;
-                    break;
-
-                default:
-                    TextLanguageSelectedIndex = 0;
-                    break;
-            }
-            switch (Properties.Settings.Default.DarkTheme)
-            {
-                case true:
-                    _checkBox.IsChecked = true;
-                    break;
-
-                default:
-                    _checkBox.IsChecked = false;
-                    break;
-            }
-
-            LoginCommand = new RelayCommand(ExecuteLogIn);
-            SignUpCommand = new RelayCommand(ExecuteSignUp);
-            LogOutCommand = new RelayCommand(ExecuteLogOut, CanExecuteLogOut);
-            SaveCommand = new RelayCommand(Execute_Save);
-            LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
-            TextLanguageBoxSelectionChanged = new RelayCommand(ExecuteTextLanguageChanged);
-            ThemeChanged = new RelayCommand(ExecuteThemeChanged);
-            SetAppereance(Properties.Settings.Default.DarkTheme);
+            Initialize();
         }
         #endregion
 
@@ -167,15 +82,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         public static readonly DependencyProperty ComplexityProperty =
             DependencyProperty.Register("Complexity", typeof(double), typeof(SettingsViewModel),
                 new PropertyMetadata(Properties.Settings.Default.Complexity));
-
-        public bool IsDarkTheme
-        {
-            get { return (bool)GetValue(IsDarkThemeProperty); }
-            set { SetValue(IsDarkThemeProperty, value); }
-        }
-        public static readonly DependencyProperty IsDarkThemeProperty =
-            DependencyProperty.Register("IsDarkTheme", typeof(bool), typeof(SettingsViewModel),
-                new PropertyMetadata(Properties.Settings.Default.DarkTheme));
 
         public string LanguageCode
         {
@@ -205,13 +111,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
 
         #region Commands
-        public ICommand LoginCommand { get; }
+        public ICommand LoginCommand { get; private set; }
         private void ExecuteLogIn(object? obj) => new Registration(TryLogIn, $"{Resources.RegLogIn}").ShowDialog();
 
-        public ICommand SignUpCommand { get; }
+        public ICommand SignUpCommand { get; private set; }
         private void ExecuteSignUp(object? obj) => new Registration(CreateAccount, $"{Resources.RegSignUp}").ShowDialog();
 
-        public ICommand LogOutCommand { get; }
+        public ICommand LogOutCommand { get; private set; }
         private void ExecuteLogOut(object? obj)
         {
             MessageBox.Show($"{Properties.Settings.Default.UserName}, {Resources.AccountQuitMessage}", $"{Resources.Quit}",
@@ -220,8 +126,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         }
         private bool CanExecuteLogOut(object? obj) => Properties.Settings.Default.UserName.ToLower() != "guest";
 
-        public ICommand SaveCommand { get; }
-        private void Execute_Save(object? obj)
+        public ICommand SaveCommand { get; private set; }
+        private void ExecuteSave(object? obj)
         {
             if (obj is UserControl window)
             {
@@ -236,7 +142,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             }
         }
 
-        public ICommand LanguageComboBoxSelectionChanged { get; }
+        public ICommand LanguageComboBoxSelectionChanged { get; private set; }
         private void ExecuteLanguageChanged(object? obj)
         {
             if (_languageComboBox != null)
@@ -247,7 +153,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             }
         }
 
-        public ICommand TextLanguageBoxSelectionChanged { get; }
+        public ICommand TextLanguageBoxSelectionChanged { get; private set; }
         private void ExecuteTextLanguageChanged(object? obj)
         {
             if (_textLanguageComboBox != null)
@@ -258,18 +164,88 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             }
         }
 
-        public ICommand ThemeChanged { get; }
+        public ICommand ThemeChanged { get; private set; }
         private void ExecuteThemeChanged(object? obj)
         {
-            if (_checkBox != null)
+            if (_themeCheckBox != null)
             {
-                Properties.Settings.Default.DarkTheme = (bool)_checkBox.IsChecked;
+                Properties.Settings.Default.DarkTheme = (bool)_themeCheckBox.IsChecked;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public ICommand ErrorSoundChanged { get; private set; }
+        private void ExecuteErrorSoundChanged(object? obj)
+        {
+            if (_soundCheckBox != null)
+            {
+                Properties.Settings.Default.ErrorSound = (bool)_soundCheckBox.IsChecked;
                 Properties.Settings.Default.Save();
             }
         }
         #endregion
 
         #region Private Methods
+        private void Initialize()
+        {
+            UserName = Properties.Settings.Default.UserName;
+            Complexity = Properties.Settings.Default.Complexity;
+            LanguageCode = Properties.Settings.Default.LanguageCode;
+
+            Languages = new ObservableCollection<string>() { "English", "Українська" };
+
+            switch (Properties.Settings.Default.LanguageCode)
+            {
+                case "uk-UA":
+                    LanguageSelectedIndex = 1;
+                    break;
+
+                default:
+                    LanguageSelectedIndex = 0;
+                    break;
+            }
+            switch (Properties.Settings.Default.TextLanguageCode)
+            {
+                case "uk-UA":
+                    TextLanguageSelectedIndex = 1;
+                    break;
+
+                default:
+                    TextLanguageSelectedIndex = 0;
+                    break;
+            }
+            switch (Properties.Settings.Default.DarkTheme)
+            {
+                case true:
+                    _themeCheckBox.IsChecked = true;
+                    break;
+
+                default:
+                    _themeCheckBox.IsChecked = false;
+                    break;
+            }
+            switch (Properties.Settings.Default.ErrorSound)
+            {
+                case true:
+                    _soundCheckBox.IsChecked = true;
+                    break;
+
+                default:
+                    _soundCheckBox.IsChecked = false;
+                    break;
+            }
+
+            LoginCommand = new RelayCommand(ExecuteLogIn);
+            SignUpCommand = new RelayCommand(ExecuteSignUp);
+            LogOutCommand = new RelayCommand(ExecuteLogOut, CanExecuteLogOut);
+            SaveCommand = new RelayCommand(ExecuteSave);
+            LanguageComboBoxSelectionChanged = new RelayCommand(ExecuteLanguageChanged);
+            TextLanguageBoxSelectionChanged = new RelayCommand(ExecuteTextLanguageChanged);
+            ThemeChanged = new RelayCommand(ExecuteThemeChanged);
+            ErrorSoundChanged = new RelayCommand(ExecuteErrorSoundChanged);
+            SetAppereance(Properties.Settings.Default.DarkTheme);
+        }
+
         private void TryLogIn(string login, string password)
         {
             var user = users.GetUserByLogin(login);
@@ -281,6 +257,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             }
             else throw new ArgumentException($"{Resources.LoginError}");
         }
+
         public void CreateAccount(string login, string password)
         {
             var user = users.GetUserByLogin(login);
