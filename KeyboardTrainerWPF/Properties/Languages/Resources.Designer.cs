@@ -169,7 +169,7 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Звук помилки.
+        ///   Looks up a localized string similar to Error Sound.
         /// </summary>
         public static string ErrorSound {
             get {

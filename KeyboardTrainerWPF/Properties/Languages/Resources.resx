@@ -154,7 +154,7 @@
     <value>English</value>
   </data>
   <data name="ErrorSound" xml:space="preserve">
-    <value>Звук помилки</value>
+    <value>Error Sound</value>
   </data>
   <data name="Fails" xml:space="preserve">
     <value>Fails:</value>

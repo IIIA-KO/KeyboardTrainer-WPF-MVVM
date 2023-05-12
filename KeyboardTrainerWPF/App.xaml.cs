@@ -6,17 +6,13 @@ using System.Globalization;
 using KeyboardTrainerService;
 using System.Threading;
 using System.Windows;
-using Text = KeyboardTrainerModel.Text;
-using System.Collections.Generic;
-using KeyboardTrainerModel;
-using System.Windows.Controls;
 
 namespace KeyboardTrainerWPF
 {
     public partial class App : Application
     {
-        private IServiceProvider _serviceProvider;
-        public IServiceProvider Services { get; private set; }
+        private IServiceProvider _serviceProvider = null!;
+        public IServiceProvider Services { get; private set; } = null!;
 
         protected override void OnStartup(StartupEventArgs e)
         {
