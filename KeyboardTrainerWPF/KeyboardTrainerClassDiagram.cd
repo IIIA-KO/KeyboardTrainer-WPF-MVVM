@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="KeyboardTrainerWPF.Properties.Languages.Resources" Collapsed="true">
+    <Position X="24.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQUAQgAIBDAAGAAgggCJFiUBEUQCCBTQoAQEQQAAAdY=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.Properties.Settings" Collapsed="true">
+    <Position X="20.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAEAAEAAAAIAAAAAABAAAAAQAAACAECEA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.Core.RelayCommand" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Models.KeyClasses.ControlKey">
+    <Position X="17.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Models\KeyClasses\ControlKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Models.KeyClasses.DigitKey">
+    <Position X="10.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Models\KeyClasses\DigitKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Models.KeyClasses.KeyButton">
+    <Position X="15.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAgACCAAAAAAAAQAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Models\KeyClasses\KeyButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Models.KeyClasses.LetterKey">
+    <Position X="13" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Models\KeyClasses\LetterKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Models.KeyClasses.Space">
+    <Position X="15.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Models\KeyClasses\Space.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Models.KeyClasses.SpecialCharKey">
+    <Position X="19.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Models\KeyClasses\SpecialCharKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.ViewModels.HomeViewModel" BaseTypeListCollapsed="true">
+    <Position X="11" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ICgBQBAAoAgBIRAKgEAYYABBGEFAFAAIIUICAAAJAAA=</HashCode>
+      <FileName>MVVM\ViewModels\HomeViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="users" />
+      <Field Name="scores" />
+      <Field Name="texts" />
+      <Field Name="_currentUser" />
+      <Field Name="_filteredText" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.ViewModels.MainViewModel" BaseTypeListCollapsed="true">
+    <Position X="8" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAEBABACkAAAAFAJAAAIAAAACAAAACAAAEAACAAIAEA=</HashCode>
+      <FileName>MVVM\ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="users" />
+      <Field Name="scores" />
+      <Field Name="texts" />
+      <Property Name="HomeViewCommand" />
+      <Property Name="RecordsTableViewCommand" />
+      <Property Name="TrainViewCommand" />
+      <Property Name="SettingsViewCommand" />
+      <Property Name="HomeVM" />
+      <Property Name="RecordsTableVM" />
+      <Property Name="SettingsVM" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.ViewModels.RecordsTableViewModel" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAAAQBRQIAIAIAAAJCAAAAAAAAEAAIAAABAA=</HashCode>
+      <FileName>MVVM\ViewModels\RecordsTableViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="scores" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.ViewModels.RegistrationViewModel" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAACAAABAIAAAAAIACCAAAAAAAAEAEoAAAAAA=</HashCode>
+      <FileName>MVVM\ViewModels\RegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.ViewModels.SettingsViewModel" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>swCAgCAiCwUAgREIAIEAhASACAAAAQAARcAAAAiEEEA=</HashCode>
+      <FileName>MVVM\ViewModels\SettingsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="users" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Views.Home" BaseTypeListCollapsed="true">
+    <Position X="25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>MVVM\Views\Home.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Views.RecordsTable" BaseTypeListCollapsed="true">
+    <Position X="22.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Views\RecordsTable.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Views.Registration" BaseTypeListCollapsed="true">
+    <Position X="26" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>MVVM\Views\Registration.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MVVM.Views.Settings" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MVVM\Views\Settings.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="10" Width="3" />
+    <TypeIdentifier>
+      <HashCode>IAAAABAAAAAAAAAAAIAIAQAAAAAAAEAAAAABEAAAAAA=</HashCode>
+      <FileName>MVVM\Views\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="users" />
+      <Field Name="scores" />
+      <Field Name="texts" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerWPF.App">
+    <Position X="18" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_serviceProvider" />
+      <Property Name="Services" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KeyboardTrainerService.ScoreService" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerService.TextService" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerService.UserService" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="KeyboardTrainerModel.Score">
+    <Position X="18.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="User" />
+      <Property Name="Text" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KeyboardTrainerModel.Text">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="KeyboardTrainerModel.User">
+    <Position X="14.75" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="KeyboardTrainerDAL.DataContext">
+    <Position X="25.25" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Controls.UserControl" Collapsed="true">
+    <Position X="22.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.DependencyObject" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="KeyboardTrainerWPF.Core.ISetAppereance" Collapsed="true">
+    <Position X="22.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAIAAAAAAAACAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Core\ISetAppereance.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeyboardTrainerModel.Interfaces.IScoreService">
+    <Position X="8.75" Y="12" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="KeyboardTrainerModel.Interfaces.ITextService">
+    <Position X="11" Y="0.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="KeyboardTrainerModel.Interfaces.IUserService">
+    <Position X="8.25" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.IServiceProvider">
+    <Position X="17.5" Y="9.75" Width="2.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.Windows.Markup.IComponentConnector" Collapsed="true">
+    <Position X="20.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

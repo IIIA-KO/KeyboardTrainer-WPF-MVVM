@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace KeyboardTrainerWPF.Core
 {
-    internal interface ISetAppereance
+    internal interface ISetAppereance   
     {
         public Brush TextColor { get; set; }
         public Brush SecondColor { get; set; }

@@ -56,7 +56,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #endregion
 
 
-        #region Public Constractor
+        #region Public Constructor
         public MainViewModel(IUserService userService, IScoreService scoreService, ITextService textService)
         {
             users = userService;

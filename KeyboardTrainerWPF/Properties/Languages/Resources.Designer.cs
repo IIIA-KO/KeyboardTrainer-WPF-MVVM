@@ -79,11 +79,20 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login was successful. Please save your settings.
+        ///   Looks up a localized string similar to Login was successful.The application will restart to save the settings!.
         /// </summary>
         public static string AccountLoginSuccess {
             get {
                 return ResourceManager.GetString("AccountLoginSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to log out of your account?.
+        /// </summary>
+        public static string AccountLogoutQuestion {
+            get {
+                return ResourceManager.GetString("AccountLogoutQuestion", resourceCulture);
             }
         }
         
@@ -97,7 +106,7 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to you have successfuly quit your account. Please save your settings.
+        ///   Looks up a localized string similar to You have successfuly quit your account. The application will restart to save the settings!.
         /// </summary>
         public static string AccountQuitMessage {
             get {
@@ -106,7 +115,7 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registration was successful. Please save your settings.
+        ///   Looks up a localized string similar to Registration was successful. The application will restart to save the settings!.
         /// </summary>
         public static string AccountSigninSuccess {
             get {
@@ -412,11 +421,11 @@ namespace KeyboardTrainerWPF.Properties.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings were saved.
+        ///   Looks up a localized string similar to Do you really want to save settings?.
         /// </summary>
-        public static string SettingsSavedMessage {
+        public static string SettingsSavedQuestion {
             get {
-                return ResourceManager.GetString("SettingsSavedMessage", resourceCulture);
+                return ResourceManager.GetString("SettingsSavedQuestion", resourceCulture);
             }
         }
         

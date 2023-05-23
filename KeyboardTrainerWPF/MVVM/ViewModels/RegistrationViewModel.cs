@@ -1,4 +1,5 @@
 ﻿using KeyboardTrainerWPF.Core;
+using KeyboardTrainerWPF.Properties.Languages;
 using System;
 using System.Linq;
 using System.Windows;
@@ -11,9 +12,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
     public class RegistrationViewModel : DependencyObject, ISetAppereance
     {
         #region Private Fields
-        private Action<string, string> _action;
-        private TextBox _login;
-        private PasswordBox _password;
+        private readonly Action<string, string> _action;
+        private readonly TextBox _login;
+        private readonly PasswordBox _password;
         #endregion
 
         #region Public Constructors
@@ -60,15 +61,16 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     _action?.Invoke(_login?.Text ?? "", _password?.Password ?? "");
 
                     MessageBox.Show(
-                        ActionName == Properties.Languages.Resources.RegLogIn ?
-                        Properties.Languages.Resources.AccountLoginSuccess :
-                        Properties.Languages.Resources.AccountSigninSuccess
+                        ActionName == Resources.RegLogIn ?
+                        Resources.AccountLoginSuccess :
+                        Resources.AccountSigninSuccess
                         , "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    window.Close();
+
+                    Properties.Settings.RestartToSave();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, $"{Properties.Languages.Resources.AccountNotFound}", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, $"{Resources.AccountNotFound}", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

@@ -13,6 +13,6 @@
         public double Accuracy { get; set; }
 
         public override string ToString()
-        => $"{Id}|{User.Login}|{Complexity}|{Speed}|{Fails}|{Duration.ToString(@"hh\:mm\:ss")}|{Accuracy:F2}";
+            => $"{Id}|{User.Login}|{Complexity}|{Speed}|{Fails}|{Duration.ToString(@"hh\:mm\:ss")}|{Accuracy:F2}";
     }
 }

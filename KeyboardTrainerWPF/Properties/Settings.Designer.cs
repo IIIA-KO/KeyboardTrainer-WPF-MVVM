@@ -8,89 +8,136 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KeyboardTrainerWPF.Properties {
-    
-    
+//Added
+using System;
+using System.Diagnostics;
+using System.Windows;
+//Added
+
+namespace KeyboardTrainerWPF.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+
+        public static Settings Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
+        //Added
+        public static void RestartToSave()
+        {
+            try
+            {
+                Default.Save();
+                var currentExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
+                Process.Start(currentExecutablePath);
+                Application.Current.Shutdown();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while saving the settings. Please restart the program", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+        }
+        //Added
+
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Guest")]
-        public string UserName {
-            get {
+        public string UserName
+        {
+            get
+            {
                 return ((string)(this["UserName"]));
             }
-            set {
+            set
+            {
                 this["UserName"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double Complexity {
-            get {
+        public double Complexity
+        {
+            get
+            {
                 return ((double)(this["Complexity"]));
             }
-            set {
+            set
+            {
                 this["Complexity"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DarkTheme {
-            get {
+        public bool DarkTheme
+        {
+            get
+            {
                 return ((bool)(this["DarkTheme"]));
             }
-            set {
+            set
+            {
                 this["DarkTheme"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public string LanguageCode {
-            get {
+        public string LanguageCode
+        {
+            get
+            {
                 return ((string)(this["LanguageCode"]));
             }
-            set {
+            set
+            {
                 this["LanguageCode"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public string TextLanguageCode {
-            get {
+        public string TextLanguageCode
+        {
+            get
+            {
                 return ((string)(this["TextLanguageCode"]));
             }
-            set {
+            set
+            {
                 this["TextLanguageCode"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ErrorSound {
-            get {
+        public bool ErrorSound
+        {
+            get
+            {
                 return ((bool)(this["ErrorSound"]));
             }
-            set {
+            set
+            {
                 this["ErrorSound"] = value;
             }
         }

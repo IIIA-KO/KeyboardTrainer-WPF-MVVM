@@ -124,16 +124,19 @@
     <value>уже існує</value>
   </data>
   <data name="AccountLoginSuccess" xml:space="preserve">
-    <value>Вхід було виконано успішно. Будь ласка, збережіть налаштування</value>
+    <value>Вхід було виконано успішно. Додаток перезапуститься для збереження налаштувань!</value>
+  </data>
+  <data name="AccountLogoutQuestion" xml:space="preserve">
+    <value>Ви дійсно хочете вийти із облікового запису?</value>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>Обліковий запис не було знайдено</value>
   </data>
   <data name="AccountQuitMessage" xml:space="preserve">
-    <value>ви успішоно вийшли зі свого облікового запису. Будь ласка, збережіть налаштування</value>
+    <value>Ви успішоно вийшли зі свого облікового запису. Додаток перезапуститься для збереження налаштувань!</value>
   </data>
   <data name="AccountSigninSuccess" xml:space="preserve">
-    <value>Реєстрація була виконана успішно. Будь ласка, збережіть налаштування</value>
+    <value>Реєстрація була виконана успішно. Додаток перезапуститься для збереження налаштувань!</value>
   </data>
   <data name="Appereance" xml:space="preserve">
     <value>Зовнішній вигляд</value>
@@ -234,8 +237,8 @@
   <data name="Settings" xml:space="preserve">
     <value>Налаштування</value>
   </data>
-  <data name="SettingsSavedMessage" xml:space="preserve">
-    <value>Налаштування було збережено</value>
+  <data name="SettingsSavedQuestion" xml:space="preserve">
+    <value>Ви дійсно хочете зберегти налаштування?</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Зареєструватися</value>
