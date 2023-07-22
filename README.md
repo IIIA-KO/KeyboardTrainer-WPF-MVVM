@@ -36,19 +36,24 @@ So, the course work solution consists of 4 projects (layers), 3 of which are cla
 
 **Interface:**
 + **Home Page**
-    + ![HomePage](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/2b2763aa-f6ac-42f1-92fc-eb9183278c88)
+    ![HomePage](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/2b2763aa-f6ac-42f1-92fc-eb9183278c88)
 
 <br>
 
 + **Records Table Page**
-    + ![RecordsTable](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/63e2797e-5e0d-461b-a688-17192e7926bc)
+    ![RecordsTable](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/63e2797e-5e0d-461b-a688-17192e7926bc)
 
 <br>
 
 + **Settings Page**
-    + ![SettingsPage](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/07e69eb2-28e7-42c3-a82e-adf8ef958a1b)
+    ![SettingsPage](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/07e69eb2-28e7-42c3-a82e-adf8ef958a1b)
 
 <br>
 
 + **LogIn/SignUp Page**
-    + ![Account](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/1de3a744-b4d4-494c-97e2-395488b02425)
+    ![Account](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/1de3a744-b4d4-494c-97e2-395488b02425)
+
+<hr>
+
+**Typing process:**
+https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/3ff6f4da-9d08-42c6-89ce-ec3ff4527420
