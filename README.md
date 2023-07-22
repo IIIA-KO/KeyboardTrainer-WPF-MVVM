@@ -51,4 +51,4 @@ So, the course work solution consists of 4 projects (layers), 3 of which are cla
 <br>
 
 + **LogIn/SignUp Page**
-    + ![AccountPage](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/0984649a-ce64-4fa2-ba31-8bc8d6a052e9)
+    + ![Account](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/1de3a744-b4d4-494c-97e2-395488b02425)
