@@ -24,7 +24,7 @@
     <Grid Background="{Binding BackgroundColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
 
@@ -111,12 +111,12 @@
             Margin="0,2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
-                <RowDefinition />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <ProgressBar
                 x:Name="progressBar"
                 Grid.Row="0"
-                Height="20"
                 Value="0">
                 <behavior:Interaction.Triggers>
                     <behavior:EventTrigger EventName="ValueChanged">
@@ -124,18 +124,53 @@
                     </behavior:EventTrigger>
                 </behavior:Interaction.Triggers>
             </ProgressBar>
-            <TextBox
-                x:Name="tbTypedText"
+
+            <ScrollViewer
+                x:Name="scroll"
                 Grid.Row="1"
-                AllowDrop="False"
-                Background="#8EABAF"
-                BorderThickness="1"
-                FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
-                FontSize="28"
-                IsInactiveSelectionHighlightEnabled="True"
-                IsReadOnly="True"
-                IsUndoEnabled="False"
-                MaxLines="1" />
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                CanContentScroll="True"
+                HorizontalScrollBarVisibility="Visible"
+                VerticalScrollBarVisibility="Disabled">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.Row="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#8EABAF">
+                        <TextBlock
+                            x:Name="tblTextToType"
+                            Margin="2,0,0,0"
+                            VerticalAlignment="Center"
+                            AllowDrop="False"
+                            FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
+                            FontSize="28"
+                            Foreground="Gray"
+                            TextAlignment="Center" />
+                    </Border>
+
+                    <TextBox
+                        x:Name="tbTypedText"
+                        Grid.Row="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        AllowDrop="False"
+                        Background="Transparent"
+                        FontFamily="/Fonts/Nunito_Sans/#NunitoSans"
+                        FontSize="28"
+                        Foreground="Black"
+                        IsInactiveSelectionHighlightEnabled="True"
+                        IsReadOnly="True"
+                        IsUndoEnabled="False"
+                        MaxLines="1"
+                        SelectionBrush="Green" />
+                </Grid>
+            </ScrollViewer>
         </Grid>
 
         <Grid x:Name="KeyboardGrid" Grid.Row="2">

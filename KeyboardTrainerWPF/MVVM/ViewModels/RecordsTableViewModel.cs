@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
-    class RecordsTableViewModel : DependencyObject, ISetAppereance
+    public class RecordsTableViewModel : DependencyObject, ISetAppereance
     {
         #region Private Fields
         private readonly IScoreService scores;

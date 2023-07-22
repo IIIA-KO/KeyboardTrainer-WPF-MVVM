@@ -14,9 +14,9 @@
     Background="Transparent"
     FontWeight="Bold"
     MouseDown="Window_MouseDown"
+    PreviewKeyDown="Window_PreviewKeyDown"
     PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
     ResizeMode="CanResizeWithGrip"
-    PreviewKeyDown="Window_PreviewKeyDown"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

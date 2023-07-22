@@ -7,11 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Key = System.Windows.Input.Key;
 
 namespace KeyboardTrainerWPF.MVVM.ViewModels
 {
@@ -25,8 +27,9 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         private Dictionary<Key, KeyButton> _keyboardButtons;
         private TextBox _textBox;
         private ProgressBar _progressBar;
+        private TextBlock _textBlock;
+        private ScrollViewer _scrollViewer;
 
-        private string _text;
         private DispatcherTimer _speedTracker = new() { Interval = TimeSpan.FromMilliseconds(1000) };
         private DateTime _startTime;
         private User _currentUser;
@@ -48,7 +51,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             Initialize();
         }
 
-        public HomeViewModel(Dictionary<Key, KeyButton> keyboard, TextBox textBox, ProgressBar bar)
+        public HomeViewModel(Dictionary<Key, KeyButton> keyboard, TextBox textBox, ProgressBar bar, TextBlock textBlock, ScrollViewer scrollViewer)
         {
             try
             {
@@ -66,6 +69,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             _keyboardButtons = keyboard;
             _textBox = textBox;
             _progressBar = bar;
+            _textBlock = textBlock;
+            _scrollViewer = scrollViewer;
 
             Initialize();
         }
@@ -113,6 +118,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             DependencyProperty.Register("User", typeof(string), typeof(HomeViewModel), new PropertyMetadata(Properties.Settings.Default.UserName));
         #endregion
 
+
         #region Public Commands
         public ICommand StartCommand { get; private set; }
         private void ExecuteStart(object? obj)
@@ -123,26 +129,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 UpdateKeyboard();
                 Fails = 0;
                 Speed = 0.0;
-                _text = string.Empty;
-
-                //Заготований текс для демонстрації на захисті курсової роботи
-                //switch (Properties.Settings.Default.TextLanguageCode)
-                //{
-                //    case "uk-UA":
-                //        _filteredText = texts.GetTextById(32);
-                //        break;
-
-                //    default:
-                //        _filteredText = texts.GetTextById(31);
-                //        break;
-                //}
 
                 try
                 {
                     _filteredText = texts.GetTextByLanguageCode(Properties.Settings.Default.TextLanguageCode)
                                          .Where(t => t.Complexity == Properties.Settings.Default.Complexity)
                                          .OrderBy(x => Random.Shared.Next())
-                                         .FirstOrDefault();
+                                         .First();
                 }
                 catch (NullReferenceException ex)
                 {
@@ -150,12 +143,15 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                     return;
                 }
 
-                _textBox.Text = _filteredText.TextContent;
+                _textBlock.Text = _filteredText.TextContent;
+
                 _textBox.Focus();
-                _progressBar.Maximum = _textBox.Text.Length;
+                _progressBar.Maximum = _textBlock.Text.Length;
+
                 _progressBar.Value = 0;
                 StartOrStop = $"{Resources.Stop}";
                 _startTime = DateTime.Now;
+
                 _speedTracker.Start();
             }
             else Stop();
@@ -166,7 +162,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         {
             if (obj is KeyEventArgs e && _keyboardButtons.ContainsKey(e.Key))
             {
-                Key key = e.Key;
+                Key key = (e.Key == Key.System) ? e.SystemKey : e.Key;
                 _keyboardButtons[key].KeyGrid.Background = SecondColor;
 
                 switch (key)
@@ -194,8 +190,10 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
                     default:
                         Type(char.Parse(_keyboardButtons[key].Content.Text));
-                        return;
+                        break;
                 }
+
+                return;
             }
         }
         public ICommand KeyUpCommand { get; private set; }
@@ -209,6 +207,8 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         }
         private bool CanExecuteKeys(object? obj) => IsStarted;
 
+
+
         public ICommand ProgressbarValueChangedCommand { get; private set; }
         private void ExecuteProgressbarValueChanged(object? obj)
         {
@@ -218,7 +218,7 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
                 TimeSpan duration = _startTime - DateTime.Now;
                 MessageBox.Show(
-                    $"{Properties.Languages.Resources.Fails}: {Fails}\n{Properties.Languages.Resources.Speed}: {Speed}", "Game over!",
+                    $"{Properties.Languages.Resources.Fails} {Fails}\n{Properties.Languages.Resources.Speed} {Speed}", "Game over!",
                     MessageBoxButton.OK, MessageBoxImage.Information);
 
                 if (User != "Guest")
@@ -244,7 +244,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
         #region Private Methods
         private void Initialize()
         {
-            _text = "";
             _speedTracker.Tick += SpeedTracking;
             _startTime = DateTime.Now;
             if (User != "Guest")
@@ -258,7 +257,6 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             KeyDownCommand = new RelayCommand(ExecuteKeyDown, CanExecuteKeys);
             KeyUpCommand = new RelayCommand(ExecuteKeyUp, CanExecuteKeys);
             ProgressbarValueChangedCommand = new RelayCommand(ExecuteProgressbarValueChanged);
-
             SetAppereance(Properties.Settings.Default.DarkTheme);
         }
 
@@ -278,22 +276,48 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void Type(char character)
         {
-            if (_textBox.Text[0] != character)
+            if (_textBox.Text.Length < _textBlock.Text.Length)
             {
-                Fails++;
-                _textBox.Foreground = Brushes.Red;
+                char expectedCharacter = _textBlock.Text[_textBox.Text.Length];
 
-                if (Properties.Settings.Default.ErrorSound)
-                    System.Media.SystemSounds.Exclamation.Play();
-                return;
+                if (character == expectedCharacter)
+                {
+                    _textBox.Text += character;
+
+                    _progressBar.Value++;
+
+
+                    _textBox.Foreground = (_progressBar.Value == _textBox.Text.Length)
+                        ? new SolidColorBrush(Colors.Black)
+                        : new SolidColorBrush(Colors.Red);
+
+                    _textBox.Select(0, (int)_progressBar.Value);
+
+                    var typeface = new Typeface(_textBox.FontFamily, _textBox.FontStyle, _textBox.FontWeight, _textBox.FontStretch);
+                    var formattedText = new FormattedText(_textBox.Text, Thread.CurrentThread.CurrentCulture, _textBox.FlowDirection, typeface, _textBox.FontSize, _textBox.Foreground);
+                    var size = new Size(formattedText.Width, formattedText.Height);
+
+                    if (size.Width > _scrollViewer.ViewportWidth / 2)
+                    {
+                        _scrollViewer.ScrollToHorizontalOffset(size.Width - _scrollViewer.ViewportWidth / 2);
+                    }
+                    else
+                    {
+                        _scrollViewer.ScrollToHorizontalOffset(0);
+                    }
+                }
+                else
+                {
+                    Fails++;
+                    _textBox.Foreground = Brushes.Red;
+
+                    if (Properties.Settings.Default.ErrorSound)
+                        System.Media.SystemSounds.Exclamation.Play();
+                }
             }
-
-            _text += character;
-            _textBox.Foreground = Brushes.Black;
-            _textBox.Text = _textBox.Text.Remove(0, 1);
-            _progressBar.Value++;
         }
 
         private void Stop()
@@ -303,12 +327,13 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
             Speed = 0;
             Fails = 0;
             _textBox.Text = string.Empty;
+            _textBlock.Text = string.Empty;
             _textBox.Foreground = Brushes.Black;
             IsStarted = false;
             StartOrStop = $"{Resources.Start}";
         }
         private void SpeedTracking(object? sender, EventArgs e) =>
-            Speed = 60 * Math.Round((_text.Length / (DateTime.Now - _startTime).TotalSeconds), 1);
+            Speed = 60 * Math.Round((_textBox.Text.Length / (DateTime.Now - _startTime).TotalSeconds), 1);
         #endregion
 
         #region InterfaceImplementation

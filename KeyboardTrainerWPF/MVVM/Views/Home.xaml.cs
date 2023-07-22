@@ -17,7 +17,7 @@ namespace KeyboardTrainerWPF.MVVM.Views
             InitializeComponent();
             KeyboardButtons = new Dictionary<Key, KeyButton>();
             GenerateKeyboardButtons(KeyboardButtons);
-            DataContext = new HomeViewModel(KeyboardButtons, tbTypedText, progressBar);
+            DataContext = new HomeViewModel(KeyboardButtons, tbTypedText, progressBar, tblTextToType, scroll);
         }
 
         private void GenerateKeyboardButtons(Dictionary<Key, KeyButton> keyboard)
