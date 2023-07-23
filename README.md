@@ -56,4 +56,4 @@ So, the course work solution consists of 4 projects (layers), 3 of which are cla
 <hr>
 
 **Typing process:**
-https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/3ff6f4da-9d08-42c6-89ce-ec3ff4527420
+![](https://github.com/IIIA-KO/KeyboardTrainer-WPF-MVVM/assets/108343976/95acb6b3-a43d-4bc0-9032-c4a2bba11223)
