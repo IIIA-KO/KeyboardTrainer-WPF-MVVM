@@ -296,17 +296,27 @@ namespace KeyboardTrainerWPF.MVVM.ViewModels
 
                     _textBox.Select(0, (int)_progressBar.Value);
 
+                    //Type -> Scroll to center while typing -> Type till the end:
+                    //var typeface = new Typeface(_textBox.FontFamily, _textBox.FontStyle, _textBox.FontWeight, _textBox.FontStretch);
+                    //var formattedText = new FormattedText(_textBox.Text, Thread.CurrentThread.CurrentCulture, _textBox.FlowDirection, typeface, _textBox.FontSize, _textBox.Foreground);
+                    //var size = new Size(formattedText.Width, formattedText.Height);
+                    //if (size.Width > _scrollViewer.ViewportWidth / 2)
+                    //{
+                    //    _scrollViewer.ScrollToHorizontalOffset(size.Width - _scrollViewer.ViewportWidth / 2);
+                    //}
+                    //else
+                    //{
+                    //    _scrollViewer.ScrollToHorizontalOffset(0);
+                    //}
+
+                    //Type -> Type to the end of line -> Scroll to right -> Repeat till the end (more prefered):
                     var typeface = new Typeface(_textBox.FontFamily, _textBox.FontStyle, _textBox.FontWeight, _textBox.FontStretch);
                     var formattedText = new FormattedText(_textBox.Text, Thread.CurrentThread.CurrentCulture, _textBox.FlowDirection, typeface, _textBox.FontSize, _textBox.Foreground);
                     var size = new Size(formattedText.Width, formattedText.Height);
 
-                    if (size.Width > _scrollViewer.ViewportWidth / 2)
+                    if (size.Width - _scrollViewer.HorizontalOffset >= (_scrollViewer.ViewportWidth - 20))
                     {
-                        _scrollViewer.ScrollToHorizontalOffset(size.Width - _scrollViewer.ViewportWidth / 2);
-                    }
-                    else
-                    {
-                        _scrollViewer.ScrollToHorizontalOffset(0);
+                        _scrollViewer.ScrollToHorizontalOffset(_scrollViewer.HorizontalOffset + _scrollViewer.ViewportWidth - 20);
                     }
                 }
                 else
